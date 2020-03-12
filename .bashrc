@@ -107,3 +107,19 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 
 
 
+# Source a script if it is executable
+source_script() {
+            [[ "${@:-1}" == "force" ]] && FORCE=1
+            for script in $*; do
+                if [[ -x $script || "$FORCE" == 1 ]]; then
+                    source $script
+                fi
+            done
+}
+
+# Execute Alias definitions.
+if [[ -d $HOME/.config/bash/aliasses/$HOSTNAME ]]; then
+    . "$HOME"/.config/bash/aliasses/$HOSTNAME
+else
+    . "$HOME"/.config/bash/aliasses/edfault
+fi
