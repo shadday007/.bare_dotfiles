@@ -1,0 +1,10 @@
+#
+# ~/.bashrc
+#
+
+# Aliases specific for host shaddayenvy
+
+# Source base
+. ~/.config/bash/aliasses/base
+
+# Specific and overriding aliases for host shaddayenvy
