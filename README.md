@@ -2,4 +2,4 @@ git clone --separate-git-dir=$HOME/.dotfiles https://github.com/shadday007/.dotf
 rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
 rm -r tmpdotfiles
 
-https://github.com/shadday007/.dotfiles/blob/master/dotfiles_install.sh | /bin/bash
+curl -Lks https://raw.githubusercontent.com/shadday007/.dotfiles/master/dotfiles_install.sh | /bin/bash
