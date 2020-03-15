@@ -8,3 +8,4 @@
 . ~/.config/bash/aliasses/base
 
 # Specific and overriding aliases for host shaddayenvy
+#echo $HOSTNAME

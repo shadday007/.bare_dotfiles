@@ -9,40 +9,6 @@ export HISTCONTROL=ignoreboth:erasedups
 
 PS1='[\u@\h \W]\$ '
 
-#list
-alias ls='ls --color=auto'
-alias la='ls -a'
-alias ll='ls -la'
-alias l='ls' 					
-alias l.="ls -A | egrep '^\.'"      
-
-#fix obvious typo's
-alias cd..='cd ..'
-alias sl="ls"
-alias pdw="pwd"
-
-## Colorize the grep command output for ease of use (good for log files)##
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-
-#readable output
-alias df='df -h'
-
-#pacman unlock
-alias unlock="sudo rm /var/lib/pacman/db.lck"
-
-#free
-alias free="free -mt"
-
-#continue download
-alias wget="wget -c"
-
-#userlist
-alias userlist="cut -d: -f1 /etc/passwd"
-
-#merge new settings
-alias merge="xrdb -merge ~/.Xresources"
 
 # Aliases for software managment
 # pacman or pm
@@ -118,8 +84,8 @@ source_script() {
 }
 
 # Execute Alias definitions.
-if [[ -d $HOME/.config/bash/aliasses/$HOSTNAME ]]; then
+if [[ -f $HOME/.config/bash/aliasses/$HOSTNAME ]]; then
     . "$HOME"/.config/bash/aliasses/$HOSTNAME
 else
-    . "$HOME"/.config/bash/aliasses/edfault
+    . "$HOME"/.config/bash/aliasses/default
 fi
