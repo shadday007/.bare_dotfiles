@@ -1,0 +1,7 @@
+# make CapsLock behave like Ctrl:
+setxkbmap -option ctrl:nocaps
+
+setxkbmap -option "shift:both_capslock"
+
+# make short-pressed Ctrl behave like Escape:
+xcape -e 'Control_L=Escape'
