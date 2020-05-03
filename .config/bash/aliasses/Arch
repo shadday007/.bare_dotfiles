@@ -28,3 +28,6 @@ alias pksyua="yaourt -Syu  --aur --noconfirm"
 alias mirror="sudo reflector --protocol https --latest 50 --number 20 --sort rate --save /etc/pacman.d/mirrorlist"
 alias mirrors=mirror
 
+#pacman unlock
+alias unlock="sudo rm /var/lib/pacman/db.lck"
+
