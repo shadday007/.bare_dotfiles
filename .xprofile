@@ -5,3 +5,11 @@ setxkbmap -option "shift:both_capslock"
 
 # make short-pressed Ctrl behave like Escape:
 xcape -e 'Control_L=Escape'
+
+
+#uim (universal input method) is a multilingual input method framework.
+export GTK_IM_MODULE=uim
+export QT_IM_MODULE=uim
+uim-xim &
+export XMODIFIERS=@im=uim
+

@@ -1,141 +1,52 @@
 " ~/.vimrc
-" Try to load minpac.
-packadd minpac
 
-if !exists('*minpac#init')
-  " minpac is not available.
+"*****************************************************************************
+"" Vim-PLug core
+"*****************************************************************************
+let vimplug_exists=expand('~/.vim/autoload/plug.vim')
 
-  " Settings for plugin-less environment.
-  " ...
-else
-  " minpac is available.
-  " init with verbosity 3 to see minpac work
-  call minpac#init({'verbose': 3})
-  call minpac#add('k-takata/minpac', {'type': 'opt'})
+if !filereadable(vimplug_exists)
+  if !executable("curl")
+    echoerr "You have to install curl or first install vim-plug yourself!"
+    execute "q!"
+  endif
+  echo "Installing Vim-Plug..."
+  echo ""
+  silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  let g:not_finish_vimplug = "yes"
 
-  " Additional plugins here.
+  autocmd VimEnter * PlugInstall
+endif
+
+
+"*****************************************************************************
+" Required:
+call plug#begin(expand('~/.vim/plugged'))
+"*****************************************************************************
 
   " File Explorer
-  call minpac#add('scrooloose/nerdtree')
-  call minpac#add('jistr/vim-nerdtree-tabs')
-  call minpac#add('ryanoasis/vim-devicons')
-  call minpac#add('Xuyuanp/nerdtree-git-plugin')
-  call minpac#add('tiagofumo/vim-nerdtree-syntax-highlight')
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'ryanoasis/vim-devicons'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
 
   " Color Scheme
-  "call minpac#add('whatyouhide/vim-gotham')
-  "call minpac#add('crusoexia/vim-monokai')
-  "call minpac#add('nanotech/jellybeans.vim')
-  "call minpac#add('nightsense/snow')
-  call minpac#add('jacoborus/tender.vim')
-  "call minpac#add('chriskempson/base16-vim')
-  
+Plug 'jacoborus/tender.vim'
+Plug 'joshdick/onedark.vim'
+Plug 'nanotech/jellybeans.vim'
+
   " Status Line
-  call minpac#add('vim-airline/vim-airline')
-  call minpac#add('vim-airline/vim-airline-themes')
-  
-  " ...
-  " minpac utility commands
-  command! PackUpdate call minpac#update()
-  command! PackClean call minpac#clean()
-  command! PackStatus call minpac#status()
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
-  " Plugin settings here.
-  
-  " vim-airline
-  let g:airline_powerline_fonts = 1  
-  " set airline theme
-   let g:airline_theme = 'tender'
-  "let g:airline_theme='jellybeans'
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#buffer_nr_show = 1
-  let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+  " Intellisense code engine
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-  "colorsheme
-
-  if strftime('%H') >= 18 && strftime('%H') < 19
-    set background=light
-"    let g:airline_theme='snow_light'
-  else
-    set background=dark
-"    let g:airline_theme='snow_dark'
-  endif
-  "colorscheme snow
-  "colorscheme jellybeans
-  "colorscheme monokai
-  "colorscheme gotham
-  colorscheme tender
-  "colorscheme base16-default-dark
-let base16colorspace=25  
-  
-  
-" <Nerdtree>-------------------{
-    ">> Basic settings
-        let g:NERDTreeChDirMode = 2  "Change current folder as root
-        autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) |cd %:p:h |endif
-
-    ">> UI settings
-        let NERDTreeQuitOnOpen=1   " Close NERDtree when files was opened
-        let NERDTreeMinimalUI=1    " Start NERDTree in minimal UI mode (No help lines)
-        let NERDTreeDirArrows=1    " Display arrows instead of ascii art in NERDTree
-        let NERDTreeChDirMode=2    " Change current working directory based on root directory in NERDTree
-        let g:NERDTreeHidden=1     " Don't show hidden files
-        let NERDTreeWinSize=30     " Initial NERDTree width
-        let NERDTreeAutoDeleteBuffer = 1  " Auto delete buffer deleted with NerdTree
-        "let NERDTreeShowBookmarks=0   " Show NERDTree bookmarks
-        let NERDTreeIgnore = ['\.pyc$', '\.swp', '\.swo', '__pycache__']   " Hide temp files in NERDTree
-        "let g:NERDTreeShowLineNumbers=1  " Show Line Number
-    " Open Nerdtree when there's no file opened
-        autocmd vimenter * if !argc()|NERDTree|endif
-    " Or, auto-open Nerdtree
-        "autocmd vimenter * NERDTree
-    " Close NERDTree when there's no other windows
-        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    " Customize icons on Nerdtree
-        let g:NERDTreeDirArrowExpandable = '▸'
-        let g:NERDTreeDirArrowCollapsible = '▾'
-        let g:NERDTreeStatusline = ''
-    " Toggle
-        nnoremap <silent> <C-b> :NERDTreeToggle<CR>
-
-    ">> NERDTREE-GIT
-        " Special characters
-    let g:NERDTreeIndicatorMapCustom = { 
-        \ "Modified"  : "✹",
-        \ "Staged"    : "✚",
-        \ "Untracked" : "✭",
-        \ "Renamed"   : "➜",
-        \ "Unmerged"  : "═",
-        \ "Deleted"   : "✖",
-        \ "Dirty"     : "✗",
-        \ "Clean"     : "✔︎",
-        \ 'Ignored'   : '☒',
-        \ "Unknown"   : "?"
-    \ }
-
-    ">> NERDTree-Tabs
-        "let g:nerdtree_tabs_open_on_console_startup=1 "Auto-open Nerdtree-tabs on VIM enter
-    ">> Nerdtree-devicons
-        if exists("g:loaded_webdevicons")
-           call webdevicons#refresh()
-        endif
-        "set guifont=DroidSansMono_Nerd_Font:h11
-    ">> Nerdtree-syntax-highlighting
-        "let g:NERDTreeDisableFileExtensionHighlight = 1
-        "let g:NERDTreeDisableExactMatchHighlight = 1
-        "let g:NERDTreeDisablePatternMatchHighlight = 1
-        "let g:NERDTreeFileExtensionHighlightFullName = 1
-        "let g:NERDTreeExactMatchHighlightFullName = 1
-        "let g:NERDTreePatternMatchHighlightFullName = 1
-        "let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
-        "let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
-        "let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
-" }
-
-
-
-  " ...
-endif
+"*****************************************************************************
+call plug#end()
+"*****************************************************************************
 
 " Common settings here.
 "
@@ -177,6 +88,7 @@ set laststatus=2
 "relativenumber changes Vim’s line number column to display 
 "how far away each line is from the current one
 set relativenumber
+set number
 
 "undofile tells Vim to create <FILENAME>.un~ files whenever you edit a file
 set undofile
@@ -205,11 +117,13 @@ set colorcolumn=85
 
 "This makes Vim show invisible characters with the same characters that TextMate uses
 set list
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:\ ,eol:¬
+			
+
 
 "Invisible character colors 
-highlight NonText guifg=#4a4a59
-highlight SpecialKey guifg=#4a4a59 
+"highlight NonText guifg=#4a4a59
+"highlight SpecialKey guifg=#4a4a59 
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -231,6 +145,367 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <C-p> :<C-u>FZF<CR>
 
-nnoremap <leader>ev :e ~/.vimrc<CR>  "Edit .vimrc
-nnoremap <leader>sv :so ~/.vimrc<CR> "Source .vimrc
+
+" Plugin settings here.
+" vim-airline
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+" set airline theme
+let g:airline_theme = 'jellybeans'
+
+if !exists('g:airline_powerline_fonts')
+  let g:airline#extensions#tabline#left_sep = ' '
+  let g:airline#extensions#tabline#left_alt_sep = '|'
+  let g:airline_left_sep          = '▶'
+  let g:airline_left_alt_sep      = '»'
+  let g:airline_right_sep         = '◀'
+  let g:airline_right_alt_sep     = '«'
+  let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
+  let g:airline#extensions#readonly#symbol   = '⊘'
+  let g:airline#extensions#linecolumn#prefix = '¶'
+  let g:airline#extensions#paste#symbol      = 'ρ'
+  let g:airline_symbols.linenr    = '␊'
+  let g:airline_symbols.branch    = '⎇'
+  let g:airline_symbols.paste     = 'ρ'
+  let g:airline_symbols.paste     = 'Þ'
+  let g:airline_symbols.paste     = '∥'
+  let g:airline_symbols.whitespace = 'Ξ'
+else
+  let g:airline#extensions#tabline#left_sep = ''
+  let g:airline#extensions#tabline#left_alt_sep = ''
+
+  " powerline symbols
+  let g:airline_left_sep = ''
+  let g:airline_left_alt_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_right_alt_sep = ''
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.linenr = ''
+endif
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
+
+" Nerdtree
+">> Basic settings
+let g:NERDTreeChDirMode = 2  "Change current folder as root
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) |cd %:p:h |endif
+
+">> UI settings
+let NERDTreeQuitOnOpen=1   " Close NERDtree when files was opened
+let NERDTreeMinimalUI=1    " Start NERDTree in minimal UI mode (No help lines)
+let NERDTreeDirArrows=1    " Display arrows instead of ascii art in NERDTree
+let NERDTreeChDirMode=2    " Change current working directory based on root directory in NERDTree
+let g:NERDTreeHidden=1     " Don't show hidden files
+let NERDTreeWinSize=30     " Initial NERDTree width
+let NERDTreeAutoDeleteBuffer = 1  " Auto delete buffer deleted with NerdTree
+"let NERDTreeShowBookmarks=0   " Show NERDTree bookmarks
+let NERDTreeIgnore = ['\.pyc$', '\.swp', '\.swo', '__pycache__']   " Hide temp files in NERDTree
+"let g:NERDTreeShowLineNumbers=1  " Show Line Number
+" Open Nerdtree when there's no file opened
+autocmd vimenter * if !argc()|NERDTree|endif
+" Or, auto-open Nerdtree
+"autocmd vimenter * NERDTree
+" Close NERDTree when there's no other windows
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Customize icons on Nerdtree
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeStatusline = ''
+" Toggle
+nnoremap <silent> <C-b> :NERDTreeToggle<CR>
+
+" NERDTREE-GIT
+" Special characters
+let g:NERDTreeIndicatorMapCustom = { 
+        \ "Modified"  : "✹",
+        \ "Staged"    : "✚",
+        \ "Untracked" : "✭",
+        \ "Renamed"   : "➜",
+        \ "Unmerged"  : "═",
+        \ "Deleted"   : "✖",
+        \ "Dirty"     : "✗",
+        \ "Clean"     : "✔︎",
+        \ 'Ignored'   : '☒',
+        \ "Unknown"   : "?"
+\ }
+
+
+">> NERDTree-Tabs
+"let g:nerdtree_tabs_open_on_console_startup=1 "Auto-open Nerdtree-tabs on VIM enter
+">> Nerdtree-devicons
+if exists("g:loaded_webdevicons")
+   call webdevicons#refresh()
+endif
+"
+
+
+"colorsheme
+if strftime('%H') >= 18 && strftime('%H') < 19
+    set background=light
+"    let g:airline_theme='snow_light'
+else
+    set background=dark
+"    let g:airline_theme='snow_dark'
+endif
+"colorscheme snow
+"colorscheme jellybeans
+"colorscheme monokai
+"colorscheme gotham
+
+
+" If you have vim >=8.0 or Neovim >= 0.1.5
+if (has("termguicolors"))
+ set termguicolors
+endif
+
+" For Neovim 0.1.3 and 0.1.4
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+" Theme
+syntax enable
+colorscheme jellybeans
+" Terminal background
+let g:jellybeans_overrides = {
+\    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
+\}
+if has('termguicolors') && &termguicolors
+    let g:jellybeans_overrides['background']['guibg'] = 'none'
+endif
+"colorscheme base16-default-dark
+let base16colorspace=25  
+
+
+" Coc.vim   
+ let g:coc_global_extensions = [
+      \   'coc-lists',
+      \   'coc-marketplace',
+      \   'coc-git',
+      \   'coc-explorer',
+      \   'coc-project',
+      \   'coc-gitignore',
+      \   'coc-bookmark',
+      \   'coc-todolist',
+      \   'coc-highlight',
+      \   'coc-yank',
+      \   'coc-snippets',
+      \   'coc-syntax',
+      \   'coc-tag',
+      \   'coc-emoji',
+      \   'coc-dictionary',
+      \   'coc-html',
+      \   'coc-css',
+      \   'coc-tsserver',
+      \   'coc-tslint-plugin',
+      \   'coc-python',
+      \   'coc-cmake',
+      \   'coc-clangd',
+      \   'coc-sh',
+      \   'coc-json',
+      \   'coc-yaml',
+      \   'coc-vimlsp'
+      \   ]
+" TextEdit might fail if hidden is not set.
+set hidden
+
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+if has('patch8.1.1068')
+  " Use `complete_info` if your (Neo)Vim version supports it.
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Introduce function text object
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Use <TAB> for selections ranges.
+" NOTE: Requires 'textDocument/selectionRange' support from the language server.
+" coc-tsserver, coc-python are the examples of servers that support it.
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add (Neo)Vim's native statusline support.
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Mappings using CoCList:
+" Show all diagnostics.
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+:nmap <space>e :CocCommand explorer<CR>
+
+
+" Bash-Language-server
+if has('nvim')
+    let g:LanguageClient_serverCommands = {
+    \ 'sh': ['bash-language-server', 'start']
+    \ }
+else
+    if executable('bash-language-server')
+      au User lsp_setup call lsp#register_server({
+        \ 'name': 'bash-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
+        \ 'whitelist': ['sh'],
+        \ })
+    endif
+endif
+
+nnoremap <leader>cv :vsplit $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
+
+
+let g:fnt_types = ['JetBrainsMono\ Nerd\ Font', 'JetBrainsMono\ Nerd\ Font', 'JetBrainsMono\ Nerd\ Font', 'JetBrainsMono\ Nerd\ Font', 'JetBrainsMono\ Nerd\ Font'   ]
+let g:fnt_sizes = [ 10, 12, 14, 16, 18 ]
+
+
+let g:fnt_index = 0
+let g:fnt_size  = g:fnt_sizes[g:fnt_index]
+
+function! CycleFont()
+  let g:fnt_index = (g:fnt_index + 1) % len(g:fnt_types)
+  let g:fnt_size  = g:fnt_sizes[g:fnt_index]
+  call ResetFont()
+endfunction
+
+function! ResetFont ()
+  if has('gui_running')
+    exe ':set guifont=' . g:fnt_types[g:fnt_index] . '\ ' . string(g:fnt_size)
+  endif
+endfunction
+
+call ResetFont()
+
+function! FontSizePlus ()
+  let g:fnt_size = g:fnt_size + 0.5
+  call ResetFont()
+endfunction
+
+function! FontSizeMinus ()
+    let g:fnt_size = g:fnt_size - 0.5
+    call ResetFont()
+endfunction
+
+nnoremap <F12> :call FontSizePlus()<cr>
+nnoremap <S-F12> :call FontSizeMinus()<cr>
+nnoremap cot :call CycleFont()<cr>
+
+
 
