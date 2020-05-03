@@ -78,7 +78,8 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/home/shadday/.local/bin:$PATH"
 
 # install font
-if fc-list | grep -i JetBrainsMono >/dev/null; then
+FONT_INSTALLED=$(fc-list | grep -i "JetBrainsMono");
+if [ -z "$FONT_INSTALLED" ]; then
    FONT_INSTALL_PATH="$HOME/.local/share/fonts"
    FONT_URL="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/Regular/complete/JetBrains%20Mono%20Regular%20Nerd%20Font%20Complete.ttf"
    FONT_NAME="JetBrains Mono Regular Nerd Font Complete.ttf"
