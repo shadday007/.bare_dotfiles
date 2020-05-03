@@ -77,7 +77,7 @@ fi
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/home/shadday/.local/bin:$PATH"
 
-# install font
+# install font JetBrains Mono Regular Nerd Font Complete.ttf
 FONT_INSTALLED=$(fc-list | grep -i "JetBrainsMono");
 if [ -z "$FONT_INSTALLED" ]; then
    FONT_INSTALL_PATH="$HOME/.local/share/fonts"
