@@ -276,38 +276,9 @@ if has('termguicolors') && &termguicolors
     let g:jellybeans_overrides['background']['guibg'] = 'none'
 endif
 "colorscheme base16-default-dark
-let base16colorspace=25  
+let base16colorspace=256
 
 
-" Coc.vim   
- let g:coc_global_extensions = [
-      \   'coc-lists',
-      \   'coc-marketplace',
-      \   'coc-git',
-      \   'coc-explorer',
-      \   'coc-project',
-      \   'coc-gitignore',
-      \   'coc-bookmark',
-      \   'coc-todolist',
-      \   'coc-highlight',
-      \   'coc-yank',
-      \   'coc-snippets',
-      \   'coc-syntax',
-      \   'coc-tag',
-      \   'coc-emoji',
-      \   'coc-dictionary',
-      \   'coc-html',
-      \   'coc-css',
-      \   'coc-tsserver',
-      \   'coc-tslint-plugin',
-      \   'coc-python',
-      \   'coc-cmake',
-      \   'coc-clangd',
-      \   'coc-sh',
-      \   'coc-json',
-      \   'coc-yaml',
-      \   'coc-vimlsp'
-      \   ]
 " TextEdit might fail if hidden is not set.
 set hidden
 

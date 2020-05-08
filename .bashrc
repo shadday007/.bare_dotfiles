@@ -28,6 +28,7 @@ alias fc='sudo fc-cache -fv'
 # Alias for dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 #
+[[ -n "$DISPLAY" && "$TERM" = "xterm" ]] && export TERM=xterm-256color
 #
 #shopt
 shopt -s autocd # change to named directory
@@ -48,6 +49,9 @@ export MYVIMRC=~/.vim/vimrc
 #export VIMCONFIG=~/.config/nvim
 #. ~/nvim-aliases.sh
 #[ -n "$PS1" ] && sh ~/.vim/pack/minpac/start/snow/shell/snow_dark.sh
+
+
+
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
