@@ -49,4 +49,4 @@ alias fc='sudo fc-cache -fv'
 
 
 # Alias for dotfiles
-alias dfgit='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dgit='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
