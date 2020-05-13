@@ -33,3 +33,20 @@ alias userlist="cut -d: -f1 /etc/passwd"
 
 #merge new settings
 alias merge="xrdb -merge ~/.Xresources"
+
+#ps
+alias ps="ps auxf"
+alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
+
+#grub update
+alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+
+#improve png
+alias fixpng="find . -type f -name "*.png" -exec convert {} -strip {} \;"
+
+#add new fonts
+alias fc='sudo fc-cache -fv'
+
+
+# Alias for dotfiles
+alias dfgit='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'

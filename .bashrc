@@ -9,27 +9,6 @@ export HISTCONTROL=ignoreboth:erasedups
 
 PS1='[\u@\h \W]\$ '
 
-
-
-#ps
-alias ps="ps auxf"
-alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
-
-#grub update
-alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
-
-#improve png
-alias fixpng="find . -type f -name "*.png" -exec convert {} -strip {} \;"
-
-#add new fonts
-alias fc='sudo fc-cache -fv'
-
-
-# Alias for dotfiles
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-#
-[[ -n "$DISPLAY" && "$TERM" = "xterm" ]] && export TERM=xterm-256color
-#
 #shopt
 shopt -s autocd # change to named directory
 shopt -s cdspell # autocorrects cd misspellings
@@ -41,45 +20,35 @@ shopt -s expand_aliases # expand aliases
 
 EDITOR=vim
 
-neofetch
 export VIMCONFIG=~/.vim
 export VIMDATA=~/.vim
 export MYVIMRC=~/.vim/vimrc
-#export VIMDATA=~/.local/share/nvim
-#export VIMCONFIG=~/.config/nvim
-#. ~/nvim-aliases.sh
-#[ -n "$PS1" ] && sh ~/.vim/pack/minpac/start/snow/shell/snow_dark.sh
 
+#
+[[ -n "$DISPLAY" && "$TERM" = "xterm" ]] && export TERM=xterm-256color
+#
 
-
-# Base16 Shell
+# Base16 Shell {{{
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 
+# }}}
 
-# Source a script if it is executable
-source_script() {
-            [[ "${@:-1}" == "force" ]] && FORCE=1
-            for script in $*; do
-                if [[ -x $script || "$FORCE" == 1 ]]; then
-                    source $script
-                fi
-            done
-}
-
-# Execute Alias definitions.
+# Execute Alias definitions. {{{
 DISTRO=$(cat /etc/issue | head -n +1 | awk '{print $1}')
 if [[ -f $HOME/.config/bash/aliasses/$DISTRO ]]; then
     . "$HOME"/.config/bash/aliasses/$DISTRO
 else
     . "$HOME"/.config/bash/aliasses/default
 fi
+# }}}
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/home/shadday/.local/bin:$PATH"
+export PATH="/home/shadday/.config/bash/scripts/:$PATH"
 
 # install font JetBrains Mono Regular Nerd Font Complete.ttf
 FONT_INSTALLED=$(fc-list | grep -i "JetBrainsMono");
@@ -95,6 +64,7 @@ if [ -z "$FONT_INSTALLED" ]; then
    fc-cache -f -v
 fi
 
+neofetch
 
 #######################  OH MY BASH ####################################
 #
@@ -200,3 +170,5 @@ source $OSH/oh-my-bash.sh
 # Example aliases
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
+
+source "$HOME"/.config/bash/scripts/color.sh
