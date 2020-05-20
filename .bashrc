@@ -30,6 +30,11 @@ export MYVIMRC=~/.vim/vimrc
 
 # Base16 Shell {{{
 BASE16_SHELL="$HOME/.config/base16-shell/"
+
+if [[ ! -f $BASE16_SHELL/profile_helper.sh ]]; then
+    git clone https://github.com/chriskempson/base16-shell.git $BASE16_SHELL
+fi
+
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
@@ -57,10 +62,10 @@ if [ -z "$FONT_INSTALLED" ]; then
    FONT_URL="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/Regular/complete/JetBrains%20Mono%20Regular%20Nerd%20Font%20Complete.ttf"
    FONT_NAME="JetBrains Mono Regular Nerd Font Complete.ttf"
    curl -fLo "$FONT_NAME" "$FONT_URL"
-   if [ ! -d "$HFONT_INSTALL_PAT" ]; then
+   if [ ! -d "$FONT_INSTALL_PATH" ]; then
       mkdir "$FONT_INSTALL_PATH"
    fi
-   mv "$FONT_NAME" "FONT_INSTALL_PATH"
+   mv "$FONT_NAME" "$FONT_INSTALL_PATH"
    fc-cache -f -v
 fi
 
@@ -68,9 +73,12 @@ neofetch
 
 #######################  OH MY BASH ####################################
 #
-
 # Path to your oh-my-bash installation.
-export OSH=/home/shadday/.oh-my-bash
+export OSH=/$HOME/.config/bash/oh-my-bash
+
+if [[ ! -f $OSH/oh-my-bash.sh ]]; then
+    git clone git://github.com/ohmybash/oh-my-bash.git $OSH
+fi
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
