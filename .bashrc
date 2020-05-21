@@ -25,8 +25,10 @@ export VIMDATA=~/.vim
 export MYVIMRC=~/.vim/vimrc
 
 #
-[[ -n "$DISPLAY" && "$TERM" = "xterm" ]] && export TERM=xterm-256color
-#
+if [[ $TERM == xterm-termite ]]; then
+    . /etc/profile.d/vte.sh
+    __vte_prompt_command
+fi
 
 # Base16 Shell {{{
 BASE16_SHELL="$HOME/.config/base16-shell/"
