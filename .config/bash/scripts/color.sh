@@ -52,7 +52,7 @@ luma() {
   local COLOR_LUMA
   COLOR_LUMA=$(echo "$COLOR_LUMA_RED + $COLOR_LUMA_GREEN + $COLOR_LUMA_BLUE" | bc )
 
-  echo "$COLOR_LUMA"
+  # echo "$COLOR_LUMA"
 }
 
 color() {
