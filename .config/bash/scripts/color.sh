@@ -1,3 +1,4 @@
+#!/bin/bash
 #!/usr/bin/env bash
 #
 # Colors
@@ -52,7 +53,7 @@ luma() {
   local COLOR_LUMA
   COLOR_LUMA=$(echo "$COLOR_LUMA_RED + $COLOR_LUMA_GREEN + $COLOR_LUMA_BLUE" | bc )
 
-  # echo "$COLOR_LUMA"
+  echo "$COLOR_LUMA"
 }
 
 color() {
@@ -68,14 +69,14 @@ color() {
     if [[ -e "$FILE" ]]; then
       local BG
       local LUMA
-      local LIGHT
       local BACKGROUND
       BG=$(grep color_background= "$FILE" | cut -d \" -f2 | sed -e 's#/##g')
       LUMA=$(luma "$BG")
-      LIGHT=$(( $(echo "$LUMA > 127.5" | bc -l) ))
-      BACKGROUND=dark
-      if [ "$LIGHT" -eq 1 ]; then
-        BACKGROUND=light
+
+      if [ "$(echo "$LUMA <= 127.5" | bc)" -eq 1 ]; then
+        BACKGROUND="dark"
+      else
+        BACKGROUND="light"
       fi
 
       if [ -e "$BASE16_CONFIG" ]; then
@@ -154,7 +155,7 @@ color() {
 if [[ -s "$BASE16_CONFIG" ]]; then
   SCHEME=$(head -1 "$BASE16_CONFIG")
   BACKGROUND=$(sed -n -e '2 p' "$BASE16_CONFIG")
-  echo $SCHEME $BACKGROUND
+  #echo $SCHEME $BACKGROUND
   if [ "$BACKGROUND" != 'dark' ] && [ "$BACKGROUND" != 'light' ]; then
     echo "warning: unknown background type in $BASE16_CONFIG"
   fi

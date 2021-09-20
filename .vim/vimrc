@@ -1,51 +1,72 @@
-" Plugins management {{{1
-try
-  packadd minpac
-catch
-  fun! InstallPlug() " Bootstrap plugin manager on new systems.
-    silent !git clone https://github.com/k-takata/minpac.git  .vim/pack/minpac/opt/minpac
-    PackUpdate
-  endfun
-endtry
+" XDG support {{{1
+if empty($XDG_CACHE_HOME)  | let $XDG_CACHE_HOME  = $HOME."/.cache"       | endif
+if empty($XDG_CONFIG_HOME) | let $XDG_CONFIG_HOME = $HOME."/.vim"         | endif
+if empty($XDG_DATA_HOME)   | let $XDG_DATA_HOME   = $HOME."/.local/share" | endif
 
-if exists('*minpac#init')
+set runtimepath^=$XDG_CONFIG_HOME
+set runtimepath+=$XDG_DATA_HOME
 
-    call minpac#init()
+scriptencoding utf-8
 
-    call minpac#add('k-takata/minpac', { 'type': 'opt' })
-
-    " Plugins list {{{2
-    " Official LSP support {{{3
-
-    " Completion / Linters {{{3
-
-    " New mappings on top of basic vim functions {{{3
-    " aka "Tpope's land"
-    call minpac#add('junegunn/fzf.vim')
-
-    " Snippets/Convenience {{{3
-
-    " Git {{{3
-    call minpac#add('tpope/vim-fugitive')
-    call minpac#add('airblade/vim-gitgutter')
-
-    " Vim plugin development {{{3
-
-    " Appearance {{{3
-
-    " Custom filetype plugins {{{3
-    " 3}}}
-
-    " Personal Packages {{{3
-    " 3}}}
-
+" VSCode early return
+if exists('g:vscode')
+    runtime $XDG_CONFIG_HOME/settings/vscode.vim
+    finish
 endif
 
-" Minpac commands {{{2
-command! PackBootstrap call InstallPlug()
-command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
-command! PackClean packadd minpac | source $MYVIMRC | call minpac#clean()
+" Auto source
+if empty($MYVIMRC) | let $MYVIMRC = expand('<sfile>:p') | endif
+augroup VimrcAutoSource
+    autocmd!
+    autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
+augroup END
 
-nnoremap <C-p> :<C-u>FZF<cr>
+runtime minpac.vim
+" source $XDG_CONFIG_HOME/plugin/settings/general.vim
+" source $XDG_CONFIG_HOME/plugin/settings/mappings.vim
 
-" 1}}}
+" Extras
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+au BufWinEnter * match ExtraWhitespace /\s\+$/
+au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+au InsertLeave * match ExtraWhitespace /\s\+$/
+au BufWinLeave * call clearmatches()
+
+" Remove all trailing whitespaces
+nnoremap <silent> <leader>rs :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
+set list
+set listchars=
+set listchars+=tab:░\ 
+set listchars+=trail:·
+set listchars+=extends:»
+set listchars+=precedes:«
+set listchars+=nbsp:⣿
+
+runtime ftplugin/man.vim
+
+function! s:JbzCppMan()
+    let old_isk = &iskeyword
+    setl iskeyword+=:
+    let str = expand("<cword>")
+    let &l:iskeyword = old_isk
+    execute 'Man ' . str
+endfunction
+
+command! JbzCppMan :call s:JbzCppMan()
+
+au FileType cpp nnoremap <buffer>K :JbzCppMan<CR>
+
+let g:openbrowser_search_engines = extend(
+\ get(g:, 'openbrowser_search_engines', {}),
+\ {
+\   'cppreference': 'https://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search={query}',
+\   'qt': 'https://doc.qt.io/qt-5/search-results.html?q={query}',
+\ },
+\ 'keep'
+\)
+
+nnoremap <silent> <leader>osx :call openbrowser-smart-search(expand('<cword>'), "cppreference")<CR>
+nnoremap <silent> <leader>osq :call openbrowser-smart-search(expand('<cword>'), "qt")<CR>
+

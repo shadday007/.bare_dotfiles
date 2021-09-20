@@ -8,7 +8,7 @@ cursor_blink = system
 cursor_shape = block
 dynamic_title = true
 filter_unmatched_urls = true
-font = JetBrainsMono Nerd Font 12
+font = JetBrainsMono Nerd Font 15
 geometry = 900x650
 highlight = #2f2f2f
 icon_name = terminal
@@ -50,7 +50,7 @@ cursor_foreground = #121212
 foreground = #adadad
 foreground_bold = #efefef
 #background = #121212
-background = rgba(18,18,18,0.7)
+background = rgba(18,18,18,0.9)
 highlight = #222222
 
 #black
