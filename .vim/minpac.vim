@@ -18,7 +18,7 @@ if exists('*minpac#init')
     " Completion / Linters {{{3
 
     " New mappings on top of basic vim functions {{{3
-    " aka "Tpope's land"
+    " aka 'Tpope's land'
     call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } })
 
     " Snippets/Convenience {{{3

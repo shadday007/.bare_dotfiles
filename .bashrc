@@ -61,6 +61,7 @@ export PATH="/home/shadday/.local/bin:$PATH"
 export PATH="/home/shadday/.config/bash/scripts/:$PATH"
 export DENO_INSTALL="/home/shadday/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+export PATH=".:$PATH"
 
 # install font JetBrains Mono Regular Nerd Font Complete.ttf
 FONT_INSTALLED=$(fc-list | grep -i "JetBrainsMono");

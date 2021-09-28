@@ -61,15 +61,15 @@ function s:CheckColorScheme()
   " example:
   " - `statusline.vim` will re-set User1, User2 etc.
   " - `after/plugin/loupe.vim` will override Search.
-  doautocmd ColorScheme
+"  doautocmd ColorScheme
 "   hi Normal guibg=NONE ctermbg=NONE
 "   hi! Normal ctermbg=NONE guibg=NONE
    hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
-  if &background ==# 'light'
+   if &background ==# 'light'
       highlight CursorLine gui=none guibg=lightcyan
-  else
-      highlight CursorLine gui=none guibg=grey20
-  endif
+   else
+          highlight CursorLine gui=none guibg=grey20
+   endif
    highlight CursorLineNr term=bold cterm=bold gui=bold 
 endfunction
 

@@ -107,6 +107,12 @@ vmap <C-L>
       \ <Esc><C-L>gv
 
 "" Leader,C toggles highlighted cursor column; works in visual mode
-noremap <Leader>C
+nnoremap <Leader>C
       \ :<C-U>set cursorcolumn! cursorcolumn?<CR>
 
+" Toggle spell check.
+nnoremap <Leader>o :setlocal spell!<CR>
+
+" Open Netwr
+nnoremap <leader>df :Lexplore %:p:h<CR>
+nnoremap <Leader>da :Lexplore<CR>
