@@ -19,7 +19,7 @@ if exists('*minpac#init')
 
     " New mappings on top of basic vim functions {{{3
     " aka 'Tpope's land'
-    call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } })
+    "call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } })
 
     " Snippets/Convenience {{{3
 
@@ -38,7 +38,8 @@ if exists('*minpac#init')
     " 3}}}
 
     " Open URI with your favorite browser from your most favorite editor
-    call minpac#add('tyru/open-browser.vim')
+    "call minpac#add('tyru/open-browser.vim')
+    call minpac#add('wincent/pinnacle')
 endif
 
 " Minpac commands {{{2

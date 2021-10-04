@@ -24,7 +24,7 @@ export VIMDATA=~/.vim
 export MYVIMRC=~/.vim/vimrc
 
 # for cppman
-export COMP_WORDBREAKS=" /\"\'><;|&("
+#export COMP_WORDBREAKS=" /\"\'><;|&("
 cppman -m true
 
 # Execute Alias definitions. {{{

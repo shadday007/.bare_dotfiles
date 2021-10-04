@@ -11,6 +11,9 @@ if has('gui')
 endif
 "}}}
 
+set wildmenu
+" Make wildmenu behave like similar to Bash completion.
+set wildmode=list:longest
 set wildignore=*~,#*#,*.7z,.DS_Store,.git,.hg,.svn,*.a,*.adf,*.asc,*.au,*.aup
       \,*.avi,*.bin,*.bmp,*.bz2,*.class,*.db,*.dbm,*.djvu,*.docx,*.exe
       \,*.filepart,*.flac,*.gd2,*.gif,*.gifv,*.gmo,*.gpg,*.gz,*.hdf,*.ico
@@ -64,8 +67,8 @@ set hlsearch            " highlight all matches
 set smartcase           " ignores case unless an upper case letter is present in the query
 set shortmess+=a        " use abbreviations in messages eg. `[RO]` instead of `[readonly]`
 set showcmd             " show command in bottom bar
+set laststatus=2        " show always stausline
 set cursorline          " highlight current line
-set wildmenu
 set lazyredraw
 set showmatch           " higlight matching parenthesis
 set fillchars+=vert:┃
