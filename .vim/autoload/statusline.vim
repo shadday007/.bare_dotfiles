@@ -14,7 +14,7 @@ endfunction
 
 function! statusline#gitstatus()
   let l:branchname = statusline#gitbranch()
-  return strlen(l:branchname) > 0?''.l:branchname.' ':''
+  return strlen(l:branchname) > 0?''.l:branchname.' ':' '
 endfunction
 
 " Automatically change the statusline color depending on mode
@@ -87,7 +87,7 @@ endfunction
 " If buffer is modified or not modified left-hand-side
 function! statusline#lhs() abort
   let l:line=statusline#gutterpadding()
-  "let l:line.=statusline#gitstatus()
+  let l:line.=statusline#gitstatus()
   let l:line.=bufnr('')
   " HEAVY BALLOT X - Unicode: U+2718, UTF-8: E2 9C 98
   let l:line.=&modified ? '✘ ' : '  '
