@@ -50,14 +50,11 @@ scriptencoding utf-8
 " cf the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 if has('statusline')
   set statusline=
-"  set statusline+=%{statusline#changestatuslineColor()}               " Changing the statusline color
-"  set statusline+=%#GitcommitBranch#                  " Switch to User7 highlight group
-"  set statusline+=%{toupper(g:currentmode[mode()])}   " Current mode
-"  set statusline+=%7*                         " Switch to User7 highlight group
-"  set statusline+=%{statusline#lhs()}
-"  set statusline+=%*                         " Reset highlight group.
-"  set statusline+=%4*                        " Switch to User4 highlight group (Powerline arrow).
-"  set statusline+=                          " Powerline arrow.
+  set statusline+=%7*                         " Switch to User7 highlight group
+  set statusline+=%{statusline#lhs()}
+  set statusline+=%*                         " Reset highlight group.
+  set statusline+=%4*                        " Switch to User4 highlight group (Powerline arrow).
+  set statusline+=                          " Powerline arrow.
 "  set statusline+=%*                         " Reset highlight group.
 "  set statusline+=\                          " Space.
 "  set statusline+=%<                         " Truncation point, if not enough width available.
