@@ -1,4 +1,13 @@
-1.- Make sure you have committed the alias to your .bashrc or .zsh:
+## Using bare repository technique
+#### Create the directory for your bare repository
+~~~ sh
+mkdir ~/.dotfiles
+~~~
+#### Initialize a bare repository in the directory you just created
+~~~ sh
+git init --bare ~/.dotfiles
+~~~
+Make sure you have committed the alias to your .bashrc or .zsh:
 #### Alias
 ~~~ sh
 # Alias for dotfiles
@@ -9,11 +18,15 @@ Ignore the files that are not being tracked from being shown up in git status:
 ~~~ sh
 dgit config --local status.showUntrackedFiles no
 ~~~
+# Add the remote location to the repository (in this case GitHub) 
+~~~ sh
+dgit remote add origin https://github.com/$USERNAME/$REPOSITORY.git
+~~~
 #### Usage
 ##### Use the dgit alias like you would use the git command
 ~~~ sh
 dgit status
-dgit add --update <filename1> <filename2> ...
+dgit add --update filename1 filename2 ...
 dgit commit -m "my comments..."
 dgit push
 ~~~
