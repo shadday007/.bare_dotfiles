@@ -129,7 +129,7 @@ function! statusline#rhs() abort
   return l:rhs
 endfunction
 
-let s:default_lhs_color='Identifier'
+let s:default_lhs_color='Comment'
 let s:async_lhs_color='Constant'
 let s:modified_lhs_color='ModeMsg'
 let s:statusline_status_highlight=s:default_lhs_color

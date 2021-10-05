@@ -76,10 +76,10 @@ function! NetrwMapping()
   "nmap <buffer> f; mx
 
   " Show the list of marked files
-  nmap <buffer> fl :echo join(netrw#Expose("netrwmarkfilelist"), "\n")<CR>
+  "nmap <buffer> fl :echo join(netrw#Expose("netrwmarkfilelist"), \"\n")<CR>
 
   " Show the current target directory
-  nmap <buffer> fq :echo 'Target:' . netrw#Expose("netrwmftgt")<CR>
+  "nmap <buffer> fq :echo 'Target:' . netrw#Expose("netrwmftgt")<CR>
 
   " Set the directory under the cursor as the current target
   "nmap <buffer> fg mtfq
