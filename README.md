@@ -10,19 +10,19 @@ Ignore the files that are not being tracked from being shown up in git status:
 dgit config --local status.showUntrackedFiles no
 ~~~
 #### Usage
-# Use the dgit alias like you would use the git command
+##### Use the dgit alias like you would use the git command
 ~~~ sh
 dgit status
 dgit add --update <filename1> <filename2> ...
 dgit commit -m "my comments..."
 dgit push
 ~~~
-# Listing files (not tracked by git)
+##### Listing files (not tracked by git)
 ~~~ sh
 dgit untracked
 dgit status -u .config/
 ~~~
-# Listing files (tracked by git)
+##### Listing files (tracked by git)
 ~~~ sh
 dgit ls-files
 dgit ls-files .config/polybar/
