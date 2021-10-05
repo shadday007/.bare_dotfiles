@@ -18,7 +18,7 @@ Ignore the files that are not being tracked from being shown up in git status:
 ~~~ sh
 dgit config --local status.showUntrackedFiles no
 ~~~
-# Add the remote location to the repository (in this case GitHub) 
+#### Add the remote location to the repository (in this case GitHub) 
 ~~~ sh
 dgit remote add origin https://github.com/$USERNAME/$REPOSITORY.git
 ~~~
