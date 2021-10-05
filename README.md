@@ -19,13 +19,12 @@ dgit push
 ~~~
 ##### Listing files (not tracked by git)
 ~~~ sh
-dgit untracked
-dgit status -u .config/
+dgit status -u .config/bash/scripts
 ~~~
 ##### Listing files (tracked by git)
 ~~~ sh
 dgit ls-files
-dgit ls-files .config/polybar/
+dgit ls-files .vim
 ~~~
 #### Install your dotfiles onto a new system
 ~~~ sh
