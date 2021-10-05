@@ -87,7 +87,7 @@ endfunction
 " If buffer is modified or not modified left-hand-side
 function! statusline#lhs() abort
   let l:line=statusline#gutterpadding()
-  let l:line.=statusline#gitstatus()
+  "let l:line.=statusline#gitstatus()
   let l:line.=bufnr('')
   " HEAVY BALLOT X - Unicode: U+2718, UTF-8: E2 9C 98
   let l:line.=&modified ? '✘ ' : '  '
