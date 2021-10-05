@@ -24,8 +24,8 @@ if exists('*minpac#init')
     " Snippets/Convenience {{{3
 
     " Git {{{3
-    call minpac#add('tpope/vim-fugitive')
-    call minpac#add('airblade/vim-gitgutter')
+    " call minpac#add('tpope/vim-fugitive')
+    " call minpac#add('airblade/vim-gitgutter')
 
     " Vim plugin development {{{3
 

@@ -1,5 +1,6 @@
 "" ." functions to format status line from https://github.com/wincent/wincent.git
 "
+
 function! statusline#gutterpadding() abort
   let l:minwidth=2
   let l:gutterWidth=max([strlen(line('$')) + 1, &numberwidth, l:minwidth])
