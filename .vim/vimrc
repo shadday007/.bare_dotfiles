@@ -21,7 +21,7 @@ augroup VimrcAutoSource
     autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
 augroup END
 
-runtime minpac.vim
+runtime $XDG_CONFIG_HOME minpac.vim
 " source $XDG_CONFIG_HOME/plugin/settings/general.vim
 " source $XDG_CONFIG_HOME/plugin/settings/mappings.vim
 

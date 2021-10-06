@@ -6,9 +6,10 @@ catch
     autocmd VimEnter * PackUpdate 
 endtry
 
-if exists('*minpac#init')
+if exists('g:loaded_minpac')
+"if exists('*minpac#init')  stop working
 
-    call minpac#init()
+    call minpac#init({'verbose': 3})
 
     call minpac#add('k-takata/minpac', { 'type': 'opt' })
 
@@ -24,28 +25,23 @@ if exists('*minpac#init')
     " Snippets/Convenience {{{3
 
     " Git {{{3
-    " call minpac#add('tpope/vim-fugitive')
-    " call minpac#add('airblade/vim-gitgutter')
+    call minpac#add('tpope/vim-fugitive')
+    call minpac#add('airblade/vim-gitgutter')
 
     " Vim plugin development {{{3
 
     " Appearance {{{3
     call minpac#add('chriskempson/base16-vim')
+    call minpac#add('wincent/pinnacle')
     " Custom filetype plugins {{{3
     " 3}}}
 
     " Personal Packages {{{3
     " 3}}}
-
-    " Open URI with your favorite browser from your most favorite editor
-    "call minpac#add('tyru/open-browser.vim')
-    call minpac#add('wincent/pinnacle')
 endif
 
 " Minpac commands {{{2
 command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
 command! PackClean packadd minpac | source $MYVIMRC | call minpac#clean()
-
-nnoremap <C-p> :<C-u>FZF<cr>
-
+"  2}}}
 " 1}}}
