@@ -71,6 +71,12 @@ function s:CheckColorScheme()
         highlight CursorLine gui=none guibg=grey20
     endif
     highlight CursorLineNr term=bold cterm=bold gui=bold 
+
+    " Spelling mistakes will be colored up red.
+    hi SpellBad cterm=underline ctermfg=201 guifg=#ff5f5f
+    hi SpellLocal cterm=underline ctermfg=202 guifg=#ff5f5f
+    hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
+    hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 endfunction
 
 if v:progname !=# 'vi'

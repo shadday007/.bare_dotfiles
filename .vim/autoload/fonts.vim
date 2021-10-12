@@ -1,4 +1,5 @@
-
+" Functions to enable to gvim to change font size, note that the type font must
+" be installed on system
 let s:fnt_types = ['JetBrainsMono\ Nerd\ Font', 'JetBrainsMono\ Nerd\ Font', 'JetBrainsMono\ Nerd\ Font', 'JetBrainsMono\ Nerd\ Font', 'JetBrainsMono\ Nerd\ Font'   ]
 let s:fnt_sizes = [ 14, 16, 18 ,20 , 22]
 
