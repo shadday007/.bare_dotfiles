@@ -27,6 +27,7 @@ if exists('g:loaded_minpac')
     " Git {{{3
     call minpac#add('tpope/vim-fugitive')
     call minpac#add('airblade/vim-gitgutter')
+    call minpac#add('tpope/vim-rhubarb')                      " for browse repository
 
     " Vim plugin development {{{3
 
