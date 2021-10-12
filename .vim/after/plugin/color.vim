@@ -66,9 +66,9 @@ function s:CheckColorScheme()
     "   hi! Normal ctermbg=NONE guibg=NONE
     hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
     if &background ==# 'light'
-        highlight CursorLine gui=none guibg=lightcyan
+        highlight CursorLine gui=none guibg=lightBlue
     else
-        highlight CursorLine gui=none guibg=grey20
+        highlight CursorLine gui=none guibg=grey25
     endif
     highlight CursorLineNr term=bold cterm=bold gui=bold 
 
