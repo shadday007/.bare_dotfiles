@@ -116,3 +116,10 @@ nnoremap <Leader>o :setlocal spell!<CR>
 " Open Netwr
 nnoremap <leader>df :Lexplore %:p:h<CR>
 nnoremap <Leader>da :Lexplore<CR>
+
+" Change Font size
+" nnoremap <F12> :call fonts#FontSizePlus()<cr>
+" nnoremap <S-F12> :call fonts#FontSizeMinus()<cr>
+" nnoremap cot :call fonts#CycleFont()<cr>
+nnoremap <F12> :call fonts#CycleFont()<cr>
+call fonts#ResetFont()
