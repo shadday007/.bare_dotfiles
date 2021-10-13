@@ -11,6 +11,7 @@ if has('gui')
 endif
 "}}}
 
+" set Wildmenu {{{2
 set wildmenu
 " Make wildmenu behave like similar to Bash completion.
 set wildmode=list:longest:list,full
@@ -21,10 +22,8 @@ set wildignore=*~,#*#,*.7z,.DS_Store,.git,.hg,.svn,*.a,*.adf,*.asc,*.au,*.aup
       \,*.ogg,*.ogv,*.opus,*.pbm,*.pdf,*.png,*.ppt,*.psd,*.pyc,*.rar,*.rm
       \,*.s3m,*.sdbm,*.sqlite,*.swf,*.swp,*.tar,*.tga,*.ttf,*.wav,*.webm,*.xbm
       \,*.xcf,*.xls,*.xlsx,*.xpm,*.xz,*.zip
-
 " Enable extended % matching
 runtime macros/matchit.vim
-
 " Makes the backspace key behave like you'd expect, and go through EVERYTHING:
 set backspace=indent,eol,start
 "}}}
@@ -38,13 +37,10 @@ set expandtab           " use spaces for tabs
 set softtabstop=4       " 4 space tab
 set shiftwidth=4
 set modelines=1
-
 " Always try to show 10 lines above and below the cursor location:
 set scrolloff=10
-
 " Allows you to switch between buffers without saving EVERY TIME:
 set hidden
-
 " Case insensitive in command-line mode:
 set wildignorecase
 "}}}
@@ -76,9 +72,7 @@ set diffopt=filler,vertical
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
-
 "}}}
-
 
 " Set temp directories {{{2
 if exists('$SUDO_USER')
@@ -100,7 +94,6 @@ else
   set undofile                      " actually use undo files
   if !has('nvim') | set viminfofile=$XDG_CACHE_HOME/vim/viminfo | endif
 endif
-
 if has('mksession')
     " override ~/.vim/view default
     set viewdir=$XDG_DATA_HOME/tmp/view | call mkdir(&viewdir, 'p', 0700)
@@ -137,7 +130,6 @@ endif
 "}}}
 
 " Spell configuration {{{2
-
 call mkdir($XDG_DATA_HOME."/.vim/spell", 'p', 0700)
 " 
 " For spelling, use  United States English by default, but later on we’ll
@@ -215,7 +207,7 @@ endif
 
 " A momentary digression here into the doldrums of 'cpoptions'—after staunchly
 " opposing it for years, I have converted to two-spacing.  You can blame Steve
-" Losh:
+" Losh
 "
 " <http://stevelosh.com/blog/2012/10/why-i-two-space/>
 "
@@ -253,4 +245,19 @@ if has('patch-8.1.728')
   set formatoptions+=p
 endif
 
+set list
+set listchars=
+set listchars+=tab:░\ 
+set listchars+=trail:·
+set listchars+=extends:»
+set listchars+=precedes:«
+set listchars+=nbsp:⣿
+
+" Extras White spaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+au BufWinEnter * match ExtraWhitespace /\s\+$/
+au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+au InsertLeave * match ExtraWhitespace /\s\+$/
+au BufWinLeave * call clearmatches()
 "}}}

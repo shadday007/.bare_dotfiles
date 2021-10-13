@@ -25,24 +25,6 @@ runtime $XDG_CONFIG_HOME minpac.vim
 " source $XDG_CONFIG_HOME/plugin/settings/general.vim
 " source $XDG_CONFIG_HOME/plugin/settings/mappings.vim
 
-" Extras
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-au BufWinEnter * match ExtraWhitespace /\s\+$/
-au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-au InsertLeave * match ExtraWhitespace /\s\+$/
-au BufWinLeave * call clearmatches()
-
-" Remove all trailing whitespaces
-nnoremap <silent> <leader>rs :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
-
-set list
-set listchars=
-set listchars+=tab:░\ 
-set listchars+=trail:·
-set listchars+=extends:»
-set listchars+=precedes:«
-set listchars+=nbsp:⣿
 
 runtime ftplugin/man.vim
 

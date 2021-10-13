@@ -14,6 +14,9 @@ endif
 
 nnoremap <Leader>v :next $MYVIMRC<CR>
 
+" Remove all trailing whitespaces
+nnoremap <silent> <leader>rs :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
 " Copy and paste from the system clipboard, and avoid indentation issues:
 noremap <leader>y "+y
 noremap <leader>p "+p
