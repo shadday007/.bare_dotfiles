@@ -22,6 +22,9 @@ export EDITOR=vim
 export VIMCONFIG=~/.vim
 export VIMDATA=~/.vim
 export MYVIMRC=~/.vim/vimrc
+### "vim" as manpager
+export MANPAGER='/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft=man ts=8 nomod nolist norelativenumber nonu noma\" -c \"normal L\" -c \"nmap q :qa<CR>\"</dev/tty <(col -b)"'
+#export MANPAGER="vim -M +MANPAGER -"
 
 # for cppman
 #export COMP_WORDBREAKS=" /\"\'><;|&("
@@ -62,6 +65,7 @@ export PATH="/home/shadday/.config/bash/scripts/:$PATH"
 export DENO_INSTALL="/home/shadday/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH=".:$PATH"
+#export MANPATH="$(manpath -g):$HOME/.cache/cppman:$HOME/.cache/cppman/manindex"   #no set for now
 
 # install font JetBrains Mono Regular Nerd Font Complete.ttf
 FONT_INSTALLED=$(fc-list | grep -i "JetBrainsMono");
