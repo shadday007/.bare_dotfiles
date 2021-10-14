@@ -29,7 +29,7 @@ set backspace=indent,eol,start
 "}}}
 
 " Tabulations and Keystrokes behaviour{{{2
-set mouse=a
+set mouse=a            " Enable mouse drag on window splits
 set mousemodel=popup
 set shiftwidth=4
 set tabstop=4           " 4 space tab
@@ -72,6 +72,8 @@ set diffopt=filler,vertical
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
+set termwinsize=12x0   " Set terminal size
+set splitbelow         " Always split below
 "}}}
 
 " Set temp directories {{{2

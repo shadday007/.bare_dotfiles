@@ -26,7 +26,7 @@ runtime $XDG_CONFIG_HOME minpac.vim
 " source $XDG_CONFIG_HOME/plugin/settings/mappings.vim
 
 
-runtime ftplugin/man.vim
+runtime $VIMRUNTIME ftplugin/man.vim
 
 function! s:JbzCppMan()
     let old_isk = &iskeyword
