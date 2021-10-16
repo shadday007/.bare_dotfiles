@@ -11,4 +11,6 @@ function! s:callCppMan()
     execute 'Man ' . str
 endfunction
 
-command! FuncCppMan :call s:callCppMan()
+" command! FuncCppMan :call s:callCppMan()
+nnoremap <Plug>CppManfunc
+      \ :call <SID>callCppMan()<CR>
