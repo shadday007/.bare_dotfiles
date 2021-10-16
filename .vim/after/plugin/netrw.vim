@@ -1,3 +1,6 @@
+" open url under cursor using 'gx'
+let g:netrw_browsex_viewer= "xdg-open"
+
 " trying to make netrw more nice
 " Hide banner
 "Ocultar el banner (Si quieren). Para mostrarlo temporalmente sólo deben presionar I en Netrw.
