@@ -126,3 +126,6 @@ nnoremap <Leader>da :Lexplore<CR>
 " nnoremap cot :call fonts#CycleFont()<cr>
 nnoremap <F12> :call fonts#CycleFont()<cr>
 call fonts#ResetFont()
+
+" for using Man with cppman only for c, c++ buffers
+nmap <buffer>K <Plug>CppManfunc

@@ -1,0 +1,3 @@
+sudo ./configure --with-features=huge --enable-gui=auto --enable-multibyte --enable-rubyinterp --enable-pythoninterp --enable-perlinterp --enable-luainterp  --enable-cscope
+
+
