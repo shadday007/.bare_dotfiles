@@ -22,10 +22,6 @@ augroup VimrcAutoSource
 augroup END
 
 runtime $XDG_CONFIG_HOME minpac.vim
-" source $XDG_CONFIG_HOME/plugin/settings/general.vim
-" source $XDG_CONFIG_HOME/plugin/settings/mappings.vim
-
-nmap <buffer>K <Plug>CppManfunc
 
 let g:openbrowser_search_engines = extend(
 \ get(g:, 'openbrowser_search_engines', {}),
