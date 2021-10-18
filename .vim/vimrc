@@ -1,10 +1,12 @@
 " XDG support {{{1
 if empty($XDG_CACHE_HOME)  | let $XDG_CACHE_HOME  = $HOME."/.cache"       | endif
-if empty($XDG_CONFIG_HOME) | let $XDG_CONFIG_HOME = $HOME."/.vim"         | endif
+if empty($XDG_CONFIG_HOME) | let $XDG_CONFIG_HOME = $HOME."/.config"      | endif
 if empty($XDG_DATA_HOME)   | let $XDG_DATA_HOME   = $HOME."/.local/share" | endif
 
 set runtimepath^=$XDG_CONFIG_HOME
 set runtimepath+=$XDG_DATA_HOME
+
+set packpath^=$HOME/.vim
 
 scriptencoding utf-8
 

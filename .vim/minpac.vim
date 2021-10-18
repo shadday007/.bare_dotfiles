@@ -15,21 +15,27 @@ if exists('g:loaded_minpac')
 
     " Plugins list {{{2
     " Official LSP support {{{3
+    " 3}}}
 
     " Completion / Linters {{{3
+    " 3}}}
 
     " New mappings on top of basic vim functions {{{3
     " aka 'Tpope's land'
     "call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } })
+    " 3}}}
 
     " Snippets/Convenience {{{3
+    " 3}}}
 
     " Git {{{3
     call minpac#add('tpope/vim-fugitive')
     call minpac#add('airblade/vim-gitgutter')
     call minpac#add('tpope/vim-rhubarb')                      " for browse repository
+    " 3}}}
 
     " Vim plugin development {{{3
+    " 3}}}
 
     " Appearance {{{3
     call minpac#add('chriskempson/base16-vim')
