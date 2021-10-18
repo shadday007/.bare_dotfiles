@@ -129,3 +129,7 @@ call fonts#ResetFont()
 
 " for using Man with cppman only for c, c++ buffers
 nmap <buffer>K <Plug>CppManfunc
+
+" shortcuts for opening files located in the same directory as the current file
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+map <leader>ew :e %%
