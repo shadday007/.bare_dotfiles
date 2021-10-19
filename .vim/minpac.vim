@@ -44,7 +44,8 @@ if exists('g:loaded_minpac')
     " 3}}}
 
     " Utilities Plugins {{{3
-    call minpac#add('tyru/open-browser.vim')
+    call minpac#add('tyru/open-browser.vim')    " open and or search the word or uri under cursor on many browsers
+    "call minpac#add('Yggdroot/indentLine')      " show conceal
     " 3}}}
 
     " Personal Packages {{{3
