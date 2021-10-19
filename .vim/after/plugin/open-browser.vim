@@ -25,7 +25,7 @@ let g:openbrowser_search_engines = extend(
 \   },
 \   'keep'
 \)
-let g:openbrowser_default_search = 'google'
+let g:openbrowser_default_search = 'duckduckgo'
 
 " Search selected visually selected word with appropriate search engine.
 nnoremap <silent> <leader>os <Plug>(openbrowser-smart-search)
