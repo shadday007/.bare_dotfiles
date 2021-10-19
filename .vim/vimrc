@@ -23,7 +23,7 @@ augroup VimrcAutoSource
     autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
 augroup END
 
-runtime $XDG_CONFIG_HOME minpac.vim
+runtime minpac.vim
 
 let g:openbrowser_search_engines = extend(
 \ get(g:, 'openbrowser_search_engines', {}),

@@ -43,6 +43,10 @@ if exists('g:loaded_minpac')
     " Custom filetype plugins {{{3
     " 3}}}
 
+    " Utilities Plugins {{{3
+    call minpac#add('tyru/open-browser.vim')
+    " 3}}}
+
     " Personal Packages {{{3
     " 3}}}
 endif
