@@ -115,6 +115,7 @@ nnoremap <Leader>C
 
 " Toggle spell check.
 nnoremap <Leader>o :setlocal spell!<CR>
+inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " Open Netwr
 nnoremap <leader>df :Lexplore %:p:h<CR>
