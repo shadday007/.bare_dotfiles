@@ -26,6 +26,9 @@ export MYVIMRC=~/.vim/vimrc
 export MANPAGER='/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft=man ts=8 nomod nolist norelativenumber nonu noma\" -c \"normal L\" -c \"nmap q :qa<CR>\"</dev/tty <(col -b)"'
 #export MANPAGER="vim -M +MANPAGER -"
 
+stty -ixon  #Note that <C-Q> only works in a terminal if you disable flow control
+            # from vim-unimpaired plugin
+
 # for cppman
 #export COMP_WORDBREAKS=" /\"\'><;|&("
 cppman -m true
