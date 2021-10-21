@@ -25,6 +25,7 @@ if exists('g:loaded_minpac')
     call minpac#add('tpope/vim-surround') " provides mappings to easily delete, change and add such surroundings in pairs.
     call minpac#add('tpope/vim-repeat') " Repeat.vim remaps . in a way that plugins can tap into it.
     call minpac#add('tpope/vim-unimpaired') " This plugin provides several pairs of bracket maps.
+    call minpac#add('jiangmiao/auto-pairs') " Insert or delete brackets, parens, quotes in pair.
     "call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } })
     " 3}}}
 
@@ -32,12 +33,14 @@ if exists('g:loaded_minpac')
     " 3}}}
 
     " Git {{{3
-    call minpac#add('tpope/vim-fugitive')
-    call minpac#add('airblade/vim-gitgutter')
-    call minpac#add('tpope/vim-rhubarb')                      " for browse repository
+    call minpac#add('tpope/vim-fugitive') " The crown jewel of Fugitive is :Git
+    call minpac#add('airblade/vim-gitgutter') " shows a git diff in the sign column
+    call minpac#add('tpope/vim-rhubarb') " for browse repository
     " 3}}}
 
-    " Vim plugin development {{{3
+    " Vim plugin for development {{{3
+    call minpac#add('ludovicchabant/vim-gutentags') " for browse repository
+    call minpac#add('skywind3000/gutentags_plus')   " for browse repository
     " 3}}}
 
     " Appearance {{{3
