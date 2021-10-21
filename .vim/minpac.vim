@@ -22,6 +22,9 @@ if exists('g:loaded_minpac')
 
     " New mappings on top of basic vim functions {{{3
     " aka 'Tpope's land'
+    call minpac#add('tpope/vim-surround') " provides mappings to easily delete, change and add such surroundings in pairs.
+    call minpac#add('tpope/vim-repeat') " Repeat.vim remaps . in a way that plugins can tap into it.
+    call minpac#add('tpope/vim-unimpaired') " This plugin provides several pairs of bracket maps.
     "call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } })
     " 3}}}
 

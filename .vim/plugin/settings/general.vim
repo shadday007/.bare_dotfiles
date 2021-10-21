@@ -23,10 +23,7 @@ set wildignore=*~,#*#,*.7z,.DS_Store,.git,.hg,.svn,*.a,*.adf,*.asc,*.au,*.aup
       \,*.ogg,*.ogv,*.opus,*.pbm,*.pdf,*.png,*.ppt,*.psd,*.pyc,*.rar,*.rm
       \,*.s3m,*.sdbm,*.sqlite,*.swf,*.swp,*.tar,*.tga,*.ttf,*.wav,*.webm,*.xbm
       \,*.xcf,*.xls,*.xlsx,*.xpm,*.xz,*.zip
-" Enable extended % matching
-runtime macros/matchit.vim
-" Makes the backspace key behave like you'd expect, and go through EVERYTHING:
-set backspace=indent,eol,start
+
 "}}}
 
 " Tabulations and Keystrokes behaviour{{{2
@@ -44,6 +41,8 @@ set scrolloff=10
 set hidden
 " Case insensitive in command-line mode:
 set wildignorecase
+" Makes the backspace key behave like you'd expect, and go through EVERYTHING:
+set backspace=indent,eol,start
 "}}}
 
 " Automatic, language-dependent indentation, syntax coloring  {{{2
@@ -75,6 +74,7 @@ set diffopt=filler,vertical
 set updatetime=300
 set termwinsize=12x0   " Set terminal size
 set splitbelow         " Always split below
+set colorcolumn=85
 "}}}
 
 " Set temp directories {{{2
