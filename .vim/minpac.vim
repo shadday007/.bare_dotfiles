@@ -26,7 +26,7 @@ if exists('g:loaded_minpac')
     call minpac#add('tpope/vim-repeat') " Repeat.vim remaps . in a way that plugins can tap into it.
     call minpac#add('tpope/vim-unimpaired') " This plugin provides several pairs of bracket maps.
     call minpac#add('jiangmiao/auto-pairs') " Insert or delete brackets, parens, quotes in pair.
-    "call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } })
+    call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } }) " fzf is a general-purpose command-line fuzzy finder
     " 3}}}
 
     " Snippets/Convenience {{{3
