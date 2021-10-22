@@ -50,6 +50,8 @@ filetype indent plugin on
 syntax on
 set autoindent
 set breakindent
+set showbreak=↪
+set linebreak
 set termguicolors
 "}}}
 
@@ -74,6 +76,7 @@ set diffopt=filler,vertical
 set updatetime=300
 set termwinsize=12x0   " Set terminal size
 set splitbelow         " Always split below
+set splitright         " Always split right
 set colorcolumn=85
 "}}}
 
@@ -169,7 +172,7 @@ set dictionary+=/usr/share/dict/spanish
 set thesaurus^=$XDG_DATA_HOME."/.vim/spell/thesaurus.txt"  "<https://sanctum.geek.nz/ref/thesaurus.txt>
 
 set complete+=kspell
-set completeopt=menuone,longest
+set completeopt=menuone,longest,popup
 set spellsuggest=double
 "}}}
 "

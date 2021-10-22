@@ -20,6 +20,12 @@ nnoremap <silent> <leader>rs :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar
 " Copy and paste from the system clipboard, and avoid indentation issues:
 noremap <leader>y "+y
 noremap <leader>p "+p
+" always use system clipboard as unnamed register
+" Detect when system clipboard changes and sync it with yank unnamed register
+set clipboard=unnamed,unnamedplus
+
+" Use <Bslash> instead of <C-w>, which is tough to type
+nmap <Bslash> <C-w>
 
 " Move visual selection up and down a line:
 vnoremap J :m '>+1<CR>gv=gv
