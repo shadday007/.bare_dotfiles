@@ -21,6 +21,7 @@ nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>l :BLines<CR>
 nnoremap <silent> <leader>` :Marks<CR>
 nnoremap <silent> <leader>; :Commands<CR>
+
 " NOTE: BTags generates tags for the current buffer on a fly despite having project-wide 'tags'
 nnoremap <silent> <leader>] :BTags<CR>
 nnoremap <silent> <leader>} :Tags<CR>
