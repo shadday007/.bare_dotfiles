@@ -27,6 +27,7 @@ if exists('g:loaded_minpac')
     call minpac#add('tpope/vim-unimpaired') " This plugin provides several pairs of bracket maps.
     call minpac#add('tpope/vim-commentary') " This plugin provides several pairs of bracket maps.
     call minpac#add('jiangmiao/auto-pairs') " Insert or delete brackets, parens, quotes in pair.
+    call minpac#add('tommcdo/vim-exchange') " Easy text exchange operator for Vim.
     " 3}}}
 
     " Fuzzy finder {{{3
