@@ -25,8 +25,14 @@ if exists('g:loaded_minpac')
     call minpac#add('tpope/vim-surround') " provides mappings to easily delete, change and add such surroundings in pairs.
     call minpac#add('tpope/vim-repeat') " Repeat.vim remaps . in a way that plugins can tap into it.
     call minpac#add('tpope/vim-unimpaired') " This plugin provides several pairs of bracket maps.
+    call minpac#add('tpope/vim-commentary') " This plugin provides several pairs of bracket maps.
     call minpac#add('jiangmiao/auto-pairs') " Insert or delete brackets, parens, quotes in pair.
+    " 3}}}
+
+    " Fuzzy finder {{{3
+    call minpac#add('junegunn/fzf.vim') " fzf is a general-purpose command-line fuzzy finder
     call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } }) " fzf is a general-purpose command-line fuzzy finder
+    " call minpac#add('pbogut/fzf-mru.vim') " fzf is a general-purpose command-line fuzzy finder
     " 3}}}
 
     " Snippets/Convenience {{{3
