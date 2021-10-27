@@ -17,7 +17,7 @@ let g:fzf_action = {
       \ 'ctrl-v': 'vsplit' }
 
 " Prefix all fzf.vim exported commands with ''
-let g:fzf_command_prefix = ''
+let g:fzf_command_prefix = 'Fzf'
 
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
@@ -47,6 +47,3 @@ let g:rg_command = '
     \ -g "*.{tf,yml,yaml,vim,viml,tsx,ts,js,jsx,json,php,md,styl,pug,jade,html,config,py,cpp,c,go,hs,rb,conf,graphql,gql,sql}"
     \ -g "!{spell,pack,.config,.git,node_modules,vendor,yarn.lock,*.sty,*.bst,build,dist}/*" '
 
-" Override 'Commands' command to fuzzy search only by 2nd column (command name)
-" <Enter> to pick command but not execute, <C-x> to execute immediately
-command! -nargs=0 Commands call fzf#vim#commands({ 'options': ['--nth', '2'] })

@@ -58,8 +58,6 @@ fi
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
-
-
 # }}}
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
@@ -94,11 +92,11 @@ source /usr/share/fzf/completion.bash
 source /usr/share/fzf/key-bindings.bash
 
 # fzf
-export FZF_DEFAULT_COMMAND='fd -m --type f --color=never --hidden --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build}'
-export FZF_DEFAULT_OPTS="--layout=reverse  --height 40% --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b --preview '(highlight -O ansi {} || bat {}) 2> /dev/null | head -500'"
+export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build}'
+export FZF_DEFAULT_OPTS="-m --layout=reverse  --height 40% --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b --preview '(highlight -O ansi {} || bat {}) 2> /dev/null | head -500'"
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
+export FZF_CTRL_T_OPTS="-m --preview 'bat --color=always --line-range :50 {}'"
 
 export FZF_ALT_C_COMMAND='fd --type d . --color=never --hidden'
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"

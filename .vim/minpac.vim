@@ -32,8 +32,8 @@ if exists('g:loaded_minpac')
 
     " Fuzzy finder {{{3
     call minpac#add('junegunn/fzf.vim') " fzf is a general-purpose command-line fuzzy finder
-    call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } }) " fzf is a general-purpose command-line fuzzy finder
-    " call minpac#add('pbogut/fzf-mru.vim') " fzf is a general-purpose command-line fuzzy finder
+    call minpac#add('junegunn/fzf', { 'do': './install --all' }) " fzf is a general-purpose command-line fuzzy finder
+    call minpac#add('pbogut/fzf-mru.vim') " fzf is a general-purpose command-line fuzzy finder
     " 3}}}
 
     " Snippets/Convenience {{{3
@@ -46,8 +46,9 @@ if exists('g:loaded_minpac')
     " 3}}}
 
     " Vim plugin for development {{{3
-    call minpac#add('ludovicchabant/vim-gutentags') " for browse repository
-    call minpac#add('skywind3000/gutentags_plus')   " for browse repository
+    call minpac#add('ludovicchabant/vim-gutentags') " for generate tags 
+    " call minpac#add('skywind3000/gutentags_plus')   " for switch gtags not
+    " work for now
     " 3}}}
 
     " Appearance {{{3
