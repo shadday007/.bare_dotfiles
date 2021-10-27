@@ -1,13 +1,13 @@
 " Set commands {{{1
 " set guioptions {{{2
 if has('gui')
-  set guioptions-=m  "remove menu bar
-  set guioptions-=T  "remove toolbar
-  set guioptions-=r  "remove right-hand scroll bar
-  set guioptions-=L  "remove left-hand scroll bar when there is a vertically split window
-  set guioptions-=R  "remove Right-hand scrollbar is present when there is a vertically
-  set guioptions-=b  "remove Bottom (horizontal) scrollbar
-  set guioptions-=l  "remove Left-hand scrollbar
+    set guioptions-=m  "remove menu bar
+    set guioptions-=T  "remove toolbar
+    set guioptions-=r  "remove right-hand scroll bar
+    set guioptions-=L  "remove left-hand scroll bar when there is a vertically split window
+    set guioptions-=R  "remove Right-hand scrollbar is present when there is a vertically
+    set guioptions-=b  "remove Bottom (horizontal) scrollbar
+    set guioptions-=l  "remove Left-hand scrollbar
 endif
 "}}}
 
@@ -17,13 +17,12 @@ set wildmenu
 set wildmode=list:longest:list,full
 
 set wildignore=*~,#*#,*.7z,.DS_Store,.git,.hg,.svn,*.a,*.adf,*.asc,*.au,*.aup
-      \,*.avi,*.bin,*.bmp,*.bz2,*.class,*.db,*.dbm,*.djvu,*.docx,*.exe
-      \,*.filepart,*.flac,*.gd2,*.gif,*.gifv,*.gmo,*.gpg,*.gz,*.hdf,*.ico
-      \,*.iso,*.jar,*.jpeg,*.jpg,*.m4a,*.mid,*.mp3,*.mp4,*.o,*.odp,*.ods,*.odt
-      \,*.ogg,*.ogv,*.opus,*.pbm,*.pdf,*.png,*.ppt,*.psd,*.pyc,*.rar,*.rm
-      \,*.s3m,*.sdbm,*.sqlite,*.swf,*.swp,*.tar,*.tga,*.ttf,*.wav,*.webm,*.xbm
-      \,*.xcf,*.xls,*.xlsx,*.xpm,*.xz,*.zip
-
+            \,*.avi,*.bin,*.bmp,*.bz2,*.class,*.db,*.dbm,*.djvu,*.docx,*.exe
+            \,*.filepart,*.flac,*.gd2,*.gif,*.gifv,*.gmo,*.gpg,*.gz,*.hdf,*.ico
+            \,*.iso,*.jar,*.jpeg,*.jpg,*.m4a,*.mid,*.mp3,*.mp4,*.o,*.odp,*.ods,*.odt
+            \,*.ogg,*.ogv,*.opus,*.pbm,*.pdf,*.png,*.ppt,*.psd,*.pyc,*.rar,*.rm
+            \,*.s3m,*.sdbm,*.sqlite,*.swf,*.swp,*.tar,*.tga,*.ttf,*.wav,*.webm,*.xbm
+            \,*.xcf,*.xls,*.xlsx,*.xpm,*.xz,*.zip,.cache
 "}}}
 
 " Tabulations and Keystrokes behaviour{{{2
@@ -82,23 +81,23 @@ set colorcolumn=85
 
 " Set temp directories {{{2
 if exists('$SUDO_USER')
-  set nobackup                        " don't create root-owned files
-  set nowritebackup                   " don't create root-owned files
-  set noswapfile                      " don't create root-owned files
-  set noundofile                      " don't create root-owned files
+    set nobackup                        " don't create root-owned files
+    set nowritebackup                   " don't create root-owned files
+    set noswapfile                      " don't create root-owned files
+    set noundofile                      " don't create root-owned files
 else
-  set backupdir=$XDG_CONFIG_HOME/tmp/backup  | call mkdir(&backupdir, 'p', 0700)   " keep backup files out of the way
-  set backupdir+=.
-  set directory=$XDG_CONFIG_HOME/tmp/swap  | call mkdir(&directory, 'p', 0700)     " keep swap files out of the way
-  set directory+=.
-  if !has('nvim')
-    set undodir=$XDG_CONFIG_HOME/tmp/undo | call mkdir(&undodir, 'p', 0700)   " keep undo files out of the way
-  else
-    set undodir=$XDG_CONFIG_HOME/tmp/nvim/undo | call mkdir(&undodir, 'p', 0700)   " keep undo files out of the way
-  endif
-  set undodir+=.
-  set undofile                      " actually use undo files
-  if !has('nvim') | set viminfofile=$XDG_CACHE_HOME/vim/viminfo | endif
+    set backupdir=$XDG_CONFIG_HOME/tmp/backup  | call mkdir(&backupdir, 'p', 0700)   " keep backup files out of the way
+    set backupdir+=.
+    set directory=$XDG_CONFIG_HOME/tmp/swap  | call mkdir(&directory, 'p', 0700)     " keep swap files out of the way
+    set directory+=.
+    if !has('nvim')
+        set undodir=$XDG_CONFIG_HOME/tmp/undo | call mkdir(&undodir, 'p', 0700)   " keep undo files out of the way
+    else
+        set undodir=$XDG_CONFIG_HOME/tmp/nvim/undo | call mkdir(&undodir, 'p', 0700)   " keep undo files out of the way
+    endif
+    set undodir+=.
+    set undofile                      " actually use undo files
+    if !has('nvim') | set viminfofile=$XDG_CACHE_HOME/vim/viminfo | endif
 endif
 if has('mksession')
     " override ~/.vim/view default
@@ -109,29 +108,29 @@ endif
 
 " Folding {{{2
 if has('folding')
-  if has('windows')
-    set fillchars=diff:∙               " BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
-    set fillchars+=fold:·              " MIDDLE DOT (U+00B7, UTF-8: C2 B7)
-    set fillchars+=vert:┃              " BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83)
-  endif
+    if has('windows')
+        set fillchars=diff:∙               " BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
+        set fillchars+=fold:·              " MIDDLE DOT (U+00B7, UTF-8: C2 B7)
+        set fillchars+=vert:┃              " BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83)
+    endif
 
-  if has('nvim-0.3.1')
-    set fillchars+=eob:\              " suppress ~ at EndOfBuffer
-  endif
+    if has('nvim-0.3.1')
+        set fillchars+=eob:\              " suppress ~ at EndOfBuffer
+    endif
 
-  " vim: set foldmethod=marker:
-  set foldmethod=indent               " not as cool as syntax, but faster
-  set foldlevelstart=99               " start unfolded
-  set foldlevelstart=10               " start with fold level of 1
-  set foldnestmax=10                  " max 10 depth
-  set nofoldenable                      " don't fold files by default on open
-  set foldcolumn=2                    " show a small column on the left side of the window
-  set foldtext=MyFoldText()
+    " vim: set foldmethod=marker:
+    set foldmethod=indent               " not as cool as syntax, but faster
+    set foldlevelstart=99               " start unfolded
+    set foldlevelstart=10               " start with fold level of 1
+    set foldnestmax=10                  " max 10 depth
+    set nofoldenable                      " don't fold files by default on open
+    set foldcolumn=2                    " show a small column on the left side of the window
+    set foldtext=MyFoldText()
 
-  function! MyFoldText() abort
-    return "+-" . v:folddashes . " " . printf("%3d", v:foldend - v:foldstart + 1) . " lines: "
-          \ . trim(substitute(getline(v:foldstart), split(&l:fmr, ',')[0].'\d\?', '', '')) . " "
-  endfunction
+    function! MyFoldText() abort
+        return "+-" . v:folddashes . " " . printf("%3d", v:foldend - v:foldstart + 1) . " lines: "
+                    \ . trim(substitute(getline(v:foldstart), split(&l:fmr, ',')[0].'\d\?', '', '')) . " "
+    endfunction
 endif
 "}}}
 
@@ -163,7 +162,7 @@ set spellcapcheck=[.?!]\\%(\ \ \\\|[\\n\\r\\t]\\)
 " <https://github.com/vim/vim/releases/tag/v8.2.0953>
 "
 if exists('+spelloptions')
-  set spelloptions+=camel
+    set spelloptions+=camel
 endif
 
 set dictionary^=/usr/share/dict/usa
@@ -208,7 +207,7 @@ set formatoptions+=1
 " <https://github.com/vim/vim/releases/tag/v7.3.541>
 "
 if has('patch-7.3.541')
-  set formatoptions+=j
+    set formatoptions+=j
 endif
 
 " A momentary digression here into the doldrums of 'cpoptions'—after staunchly
@@ -248,7 +247,7 @@ set cpoptions+=J
 " <https://github.com/vim/vim/releases/tag/v8.1.1523>
 
 if has('patch-8.1.728')
-  set formatoptions+=p
+    set formatoptions+=p
 endif
 
 set list
@@ -266,4 +265,10 @@ au BufWinEnter * match ExtraWhitespace /\s\+$/
 au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 au BufWinLeave * call clearmatches()
+"}}}
+
+" Format grerep configuration {{{2
+" Use ripgrep as the grep tool
+set grepprg=rg\ --vimgrep\ --smart-case
+set grepformat=%f:%l:%c:%m,%f:%l:%m
 "}}}
