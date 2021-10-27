@@ -49,7 +49,8 @@ filetype indent plugin on
 syntax on
 set autoindent
 set breakindent
-set showbreak=↪
+set showbreak=↳
+" ↪
 set linebreak
 set termguicolors
 "}}}
