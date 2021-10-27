@@ -17,7 +17,7 @@ let g:fzf_action = {
       \ 'ctrl-v': 'vsplit' }
 
 " Prefix all fzf.vim exported commands with ''
-let g:fzf_command_prefix = 'Fzf'
+let g:fzf_command_prefix = ''
 
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
