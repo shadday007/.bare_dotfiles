@@ -27,7 +27,7 @@ export MANPAGER='/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft
 #export MANPAGER="vim -M +MANPAGER -"
 
 stty -ixon  #Note that <C-Q> only works in a terminal if you disable flow control
-            # from vim-unimpaired plugin
+# from vim-unimpaired plugin
 
 # for cppman
 #export COMP_WORDBREAKS=" /\"\'><;|&("
@@ -57,29 +57,29 @@ fi
 
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        eval "$("$BASE16_SHELL/profile_helper.sh")"
-# }}}
+    eval "$("$BASE16_SHELL/profile_helper.sh")"
+    # }}}
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="/home/shadday/.local/bin:$PATH"
-export PATH="/home/shadday/.config/bash/scripts/:$PATH"
-export DENO_INSTALL="/home/shadday/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
-export PATH=".:$PATH"
-#export MANPATH="$(manpath -g):$HOME/.cache/cppman:$HOME/.cache/cppman/manindex"   #no set for now
+    export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+    export PATH="/home/shadday/.local/bin:$PATH"
+    export PATH="/home/shadday/.config/bash/scripts/:$PATH"
+    export DENO_INSTALL="/home/shadday/.deno"
+    export PATH="$DENO_INSTALL/bin:$PATH"
+    export PATH=".:$PATH"
+    #export MANPATH="$(manpath -g):$HOME/.cache/cppman:$HOME/.cache/cppman/manindex"   #no set for now
 
 # install font JetBrains Mono Regular Nerd Font Complete.ttf
 FONT_INSTALLED=$(fc-list | grep -i "JetBrainsMono");
 if [ -z "$FONT_INSTALLED" ]; then
-   FONT_INSTALL_PATH="$HOME/.local/share/fonts"
-   FONT_URL="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/Regular/complete/JetBrains%20Mono%20Regular%20Nerd%20Font%20Complete.ttf"
-   FONT_NAME="JetBrains Mono Regular Nerd Font Complete.ttf"
-   curl -fLo "$FONT_NAME" "$FONT_URL"
-   if [ ! -d "$FONT_INSTALL_PATH" ]; then
-      mkdir "$FONT_INSTALL_PATH"
-   fi
-   mv "$FONT_NAME" "$FONT_INSTALL_PATH"
-   fc-cache -f -v
+    FONT_INSTALL_PATH="$HOME/.local/share/fonts"
+    FONT_URL="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/Regular/complete/JetBrains%20Mono%20Regular%20Nerd%20Font%20Complete.ttf"
+    FONT_NAME="JetBrains Mono Regular Nerd Font Complete.ttf"
+    curl -fLo "$FONT_NAME" "$FONT_URL"
+    if [ ! -d "$FONT_INSTALL_PATH" ]; then
+        mkdir "$FONT_INSTALL_PATH"
+    fi
+    mv "$FONT_NAME" "$FONT_INSTALL_PATH"
+    fc-cache -f -v
 fi
 
 neofetch
@@ -91,35 +91,42 @@ source "$HOME"/.config/bash/scripts/color.sh
 source /usr/share/fzf/completion.bash
 source /usr/share/fzf/key-bindings.bash
 
-# fzf
+# 'fzf' configuration.
+export FZF_DEFAULT_OPTS="
+--height 75% --multi --reverse --margin=0,1
+--bind ctrl-f:page-down,ctrl-b:page-up
+--bind pgdn:preview-page-down,pgup:preview-page-up
+--prompt=\"❯ \"
+--color bg+:#343d46,fg+:#dadada,hl:#0dbc79,hl+:#23d18b
+--color border:#303030,info:#0dbc79,header:#80a0ff,spinner:#36c692
+--color prompt:#87afff,pointer:#ff3c3c,marker:#f09479,gutter:-1
+--preview '(highlight -O ansi {} || bat --color=always {}) 2> /dev/null | head -500'
+"
 export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build}'
-export FZF_DEFAULT_OPTS="-m --layout=reverse  --height 40% --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b --preview '(highlight -O ansi {} || bat {}) 2> /dev/null | head -500'"
-
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="-m --preview 'bat --color=always --line-range :50 {}'"
-
+export FZF_CTRL_T_OPTS='--multi --preview "bat --color=always --line-range :500 {}"'
 export FZF_ALT_C_COMMAND='fd --type d . --color=never --hidden'
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
+export FZF_ALT_C_OPTS='--preview "tree -C {} | head -100"'
 
 export BAT_THEME="base16-256"
 
 ### CREATE CUSTOM PROMPT(S)
 #PS1=$'\n\e[1;36m %@ [%.] %# \e[0m\e[4 q' # for zsh
-  # \n - new line
-  # %# - specifies whether the user is root (#) or otherwise (%)
-  # \e[1;36m - applies bold and cyan color to the following text (list of options in the LS_COLORS file on the www-gem gitlab)
-  # %@ - time in 12h format
-  # %. - current directory (not the full path)
-  # \e[0m - exit color-change
-  # \e[4 q - show the cursor as underline _
-    # 0 -> blinking block
-    # 1 -> blinking block (default)
-    # 2 -> steady block
-    # 3 -> blinking underline
-    # 4 -> steady underline
-    # 5 -> blinking bar (xterm)
-    # 6 -> steady bar (xterm)
-  # Note that zsh also offers a right sided prompt with the RPROMPT variable. It uses the same placeholders as the PS1 prompt.
+# \n - new line
+# %# - specifies whether the user is root (#) or otherwise (%)
+# \e[1;36m - applies bold and cyan color to the following text (list of options in the LS_COLORS file on the www-gem gitlab)
+# %@ - time in 12h format
+# %. - current directory (not the full path)
+# \e[0m - exit color-change
+# \e[4 q - show the cursor as underline _
+# 0 -> blinking block
+# 1 -> blinking block (default)
+# 2 -> steady block
+# 3 -> blinking underline
+# 4 -> steady underline
+# 5 -> blinking bar (xterm)
+# 6 -> steady bar (xterm)
+# Note that zsh also offers a right sided prompt with the RPROMPT variable. It uses the same placeholders as the PS1 prompt.
 
   ### OTHER ZSH OPTIONS
   # %D - the date in yy-mm-dd format
