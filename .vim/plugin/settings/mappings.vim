@@ -52,6 +52,8 @@ endfunction
 nnoremap ; :
 nnoremap : ;
 
+" Make dot work on visual line selections.
+xnoremap . :norm.<CR>
 
 " Nicer Navigation
 
