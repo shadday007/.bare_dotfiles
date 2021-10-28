@@ -1,3 +1,7 @@
+" Leader key   must be first
+let g:mapleader = "\<Space>"
+let g:maplocalleader = ','
+
 " XDG support {{{1
 if empty($XDG_CACHE_HOME)  | let $XDG_CACHE_HOME  = $HOME."/.cache"       | endif
 if empty($XDG_CONFIG_HOME) | let $XDG_CONFIG_HOME = $HOME."/.config"      | endif

@@ -1,7 +1,3 @@
-" Leader key
-let g:mapleader = "\<Space>"
-let g:maplocalleader = ','
-
 " If the local leader is a comma, map double-tap comma to its original
 " function in the relevant modes so that I can still use it quickly without
 " relying on mapping 'timeout'.
