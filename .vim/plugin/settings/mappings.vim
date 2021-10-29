@@ -138,3 +138,9 @@ nmap <buffer>K <Plug>CppManfunc
 " shortcuts for opening files located in the same directory as the current file
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 map <leader>ew :e %%
+
+" Insert the current line into the command-line
+" https://gist.github.com/romainl/fc2c2889be3718e9e491ab1c525ec4de
+if !has('patch-8.0.1787')
+    cnoremap <C-r><C-l> <C-r>=getline('.')<CR>
+endif
