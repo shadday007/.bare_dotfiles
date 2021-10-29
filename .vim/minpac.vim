@@ -49,6 +49,7 @@ if exists('g:loaded_minpac')
     call minpac#add('ludovicchabant/vim-gutentags') " for generate tags 
     " call minpac#add('skywind3000/gutentags_plus')   " for switch gtags not
     " work for now
+    call minpac#add('liuchengxu/vista.vim') " View and search LSP symbols, tags in Vim
     " 3}}}
 
     " Appearance {{{3
