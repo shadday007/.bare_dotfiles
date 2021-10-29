@@ -22,7 +22,7 @@ set wildignore=*~,#*#,*.7z,.DS_Store,.git,.hg,.svn,*.a,*.adf,*.asc,*.au,*.aup
             \,*.iso,*.jar,*.jpeg,*.jpg,*.m4a,*.mid,*.mp3,*.mp4,*.o,*.odp,*.ods,*.odt
             \,*.ogg,*.ogv,*.opus,*.pbm,*.pdf,*.png,*.ppt,*.psd,*.pyc,*.rar,*.rm
             \,*.s3m,*.sdbm,*.sqlite,*.swf,*.swp,*.tar,*.tga,*.ttf,*.wav,*.webm,*.xbm
-            \,*.xcf,*.xls,*.xlsx,*.xpm,*.xz,*.zip,.cache
+            \,*.xcf,*.xls,*.xlsx,*.xpm,*.xz,*.zip,.cache,.local
 "}}}
 
 " Tabulations and Keystrokes behaviour{{{2
