@@ -34,6 +34,7 @@ if exists('g:loaded_minpac')
     call minpac#add('junegunn/fzf.vim') " fzf is a general-purpose command-line fuzzy finder
     call minpac#add('junegunn/fzf', { 'do': './install --all' }) " fzf is a general-purpose command-line fuzzy finder
     call minpac#add('pbogut/fzf-mru.vim') " fzf is a general-purpose command-line fuzzy finder
+    call minpac#add('jesseleite/vim-agriculture') " improve the project search experience when using tools like ag and rg
     " 3}}}
 
     " Snippets/Convenience {{{3
