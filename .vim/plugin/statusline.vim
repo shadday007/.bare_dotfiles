@@ -1,28 +1,3 @@
-" Subset from plugin/statusline.vim (can't comment inline with line continuation
-" markers without Vim freaking out).
-" let g:QuickfixStatusline =
-"       \ 'Quickfix'
-"       \ . '%<'
-"       \ . '\ '
-"       \ . '%='
-"       \ . '\ '
-"       \ . 'ℓ'
-"       \ . '\ '
-"       \ . '%l'
-"       \ . '/'
-"       \ . '%L'
-"       \ . '\ '
-"       \ . '@'
-"       \ . '\ '
-"       \ . '%c'
-"       \ . '%V'
-"       \ . '\ '
-"       \ . '%1*'
-"       \ . '%p'
-"       \ . '%%'
-"       \ . '%*'
-" " https://github.com/Greduan/dotfiles/blob/76e16dd8a04501db29989824af512c453550591d/vim/after/plugin/statusline.vim
-
 scriptencoding utf-8
 
 " cf the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P

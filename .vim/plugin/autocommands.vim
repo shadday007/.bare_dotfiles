@@ -12,6 +12,11 @@ if has('autocmd')
             " [1]: https://stackoverflow.com/questions/4292733/vim-creating-parent-directories-on-save
             autocmd BufWritePre * if expand("<afile>")!~#'^\w\+:/' && !isdirectory(expand("%:h")) | execute "silent! !mkdir -p ".shellescape(expand('%:h'), 1) | redraw! | endif
 
+            " Auto-resize splits when Vim gets resized.
+            autocmd VimResized * wincmd =
+
+            " Update a buffer's contents on focus if it changed outside of Vim.
+            au FocusGained,BufEnter * :checktime
 
             " autocmd that will set up the w:created variable
             autocmd VimEnter * autocmd WinEnter * let w:created=1
@@ -21,8 +26,8 @@ if has('autocmd')
             " or in an earlier VimEnter autocmd if you include this
             autocmd VimEnter * let w:created=1
 
-            autocmd BufEnter,FocusGained,VimEnter,WinEnter * call autocommands#focus_window()
-            autocmd FocusLost,WinLeave * call autocommands#blur_window()
+            autocmd BufEnter,FocusGained,VimEnter,WinEnter * call autocommands#focus_window() | setlocal cursorline
+            autocmd FocusLost,WinLeave * call autocommands#blur_window() | setlocal nocursorline
 
             autocmd ColorScheme * call statusline#update_highlight()
             "      autocmd User FerretAsyncStart call statusline#async_start()
