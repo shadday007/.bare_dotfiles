@@ -56,12 +56,14 @@ if exists('g:loaded_minpac')
     " Appearance {{{3
     call minpac#add('chriskempson/base16-vim')
     call minpac#add('wincent/pinnacle')
+    call minpac#add('Yggdroot/indentLine')  " displaying thin vertical lines at each indentation level
+    " 3}}}
+
     " Custom filetype plugins {{{3
     " 3}}}
 
     " Utilities Plugins {{{3
     call minpac#add('tyru/open-browser.vim')    " open and or search the word or uri under cursor on many browsers
-    "call minpac#add('Yggdroot/indentLine')      " show conceal
     " 3}}}
 
     " Personal Packages {{{3
