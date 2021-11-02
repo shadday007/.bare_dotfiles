@@ -28,6 +28,7 @@ if exists('g:loaded_minpac')
     call minpac#add('tpope/vim-commentary') " This plugin provides several pairs of bracket maps.
     call minpac#add('jiangmiao/auto-pairs') " Insert or delete brackets, parens, quotes in pair.
     call minpac#add('tommcdo/vim-exchange') " Easy text exchange operator for Vim.
+    call minpac#add('unblevable/quick-scope') " highlight for a unique character in every word on a line
     " 3}}}
 
     " Fuzzy finder {{{3
@@ -35,6 +36,7 @@ if exists('g:loaded_minpac')
     call minpac#add('junegunn/fzf', { 'do': './install --all' }) " fzf is a general-purpose command-line fuzzy finder
     call minpac#add('pbogut/fzf-mru.vim') " fzf is a general-purpose command-line fuzzy finder
     call minpac#add('jesseleite/vim-agriculture') " improve the project search experience when using tools like ag and rg
+    call minpac#add('mhinz/vim-grepper') " Use your favorite grep tool to start an asynchronous search
     " 3}}}
 
     " Snippets/Convenience {{{3
@@ -43,13 +45,13 @@ if exists('g:loaded_minpac')
     " Git {{{3
     call minpac#add('tpope/vim-fugitive') " The crown jewel of Fugitive is :Git
     call minpac#add('airblade/vim-gitgutter') " shows a git diff in the sign column
+    call minpac#add('junegunn/vim-github-dashboard') " Browse GitHub events (user dashboard, user/repo activity) in Vim.
     call minpac#add('tpope/vim-rhubarb') " for browse repository
     " 3}}}
 
     " Vim plugin for development {{{3
     call minpac#add('ludovicchabant/vim-gutentags') " for generate tags 
-    " call minpac#add('skywind3000/gutentags_plus')   " for switch gtags not
-    " work for now
+    " call minpac#add('skywind3000/gutentags_plus')   " for switch gtags not work for now
     call minpac#add('liuchengxu/vista.vim') " View and search LSP symbols, tags in Vim
     " 3}}}
 
