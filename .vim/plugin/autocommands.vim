@@ -24,6 +24,19 @@ if has('autocmd')
             autocmd BufEnter,FocusGained,VimEnter,WinEnter * call autocommands#focus_window()
             autocmd FocusLost,WinLeave * call autocommands#blur_window()
 
+            autocmd ColorScheme * call statusline#update_highlight()
+            "      autocmd User FerretAsyncStart call statusline#async_start()
+            "      autocmd User FerretAsyncFinish call statusline#async_finish()
+
+            autocmd BufEnter,FocusGained,VimEnter,WinEnter * call autocommands#focus_statusline()
+            autocmd FocusLost,WinLeave * call autocommands#blur_statusline()
+
+            if exists('#TextChangedI')
+                autocmd BufWinEnter,BufWritePost,FileWritePost,TextChanged,TextChangedI,WinEnter * call statusline#check_modified()
+            else
+                autocmd BufWinEnter,BufWritePost,FileWritePost,WinEnter * call statusline#check_modified()
+            endif
+
         augroup END
 
     endfunction
