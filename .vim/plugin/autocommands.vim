@@ -16,7 +16,7 @@ if has('autocmd')
             autocmd VimResized * wincmd =
 
             " Update a buffer's contents on focus if it changed outside of Vim.
-            au FocusGained,BufEnter * :checktime
+            autocmd FocusGained,BufEnter * :checktime
 
             " autocmd that will set up the w:created variable
             autocmd VimEnter * autocmd WinEnter * let w:created=1
