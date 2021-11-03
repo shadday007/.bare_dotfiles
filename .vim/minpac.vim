@@ -37,6 +37,7 @@ if exists('g:loaded_minpac')
     call minpac#add('pbogut/fzf-mru.vim') " fzf is a general-purpose command-line fuzzy finder
     call minpac#add('jesseleite/vim-agriculture') " improve the project search experience when using tools like ag and rg
     call minpac#add('mhinz/vim-grepper') " Use your favorite grep tool to start an asynchronous search
+    call minpac#add('yssl/QFEnter') " allows you to open items from Vim's quickfix or location list wherever you wish.
     " 3}}}
 
     " Snippets/Convenience {{{3
@@ -53,6 +54,8 @@ if exists('g:loaded_minpac')
     call minpac#add('ludovicchabant/vim-gutentags') " for generate tags 
     " call minpac#add('skywind3000/gutentags_plus')   " for switch gtags not work for now
     call minpac#add('liuchengxu/vista.vim') " View and search LSP symbols, tags in Vim
+    call minpac#add('SirVer/ultisnips') " Snippet Manager
+    call minpac#add('honza/vim-snippets') " Snippet Provider
     " 3}}}
 
     " Appearance {{{3
