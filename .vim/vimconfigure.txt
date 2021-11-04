@@ -77,7 +77,7 @@ sudo ./configure --with-features=huge \
 make VIMRUNTIMEDIR=/usr/local/share/vim/vim${VIM_VER}
 
 # install (to usr local)
-sudo make 
+sudo make -j4 
 #sudo make install
 #use checkinstall later vim could be uninstalled using: sudo dpkg -r vim
 sudo checkinstall
