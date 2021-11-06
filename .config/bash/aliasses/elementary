@@ -2,7 +2,7 @@
 # ~/.bashrc
 #
 
-# Aliases specific for Distro ArchLinux
+# Aliases for software managment Debian Base distro
 
 # Source base
 . ~/.config/bash/aliasses/base
