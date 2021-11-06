@@ -1,3 +1,6 @@
+# define keyboard
+setxkbmap -model pc105 -layout us -variant altgr-intl
+
 # make CapsLock behave like Ctrl:
 setxkbmap -option ctrl:nocaps
 
