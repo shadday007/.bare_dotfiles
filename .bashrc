@@ -66,6 +66,7 @@ fi
     export DENO_INSTALL="/home/shadday/.deno"
     export PATH="$DENO_INSTALL/bin:$PATH"
     export PATH=".:$PATH"
+    export PATH="/home/shadday/.gem/ruby/3.0.0/bin:$PATH"
     #export MANPATH="$(manpath -g):$HOME/.cache/cppman:$HOME/.cache/cppman/manindex"   #no set for now
 
 # install font JetBrains Mono Regular Nerd Font Complete.ttf
