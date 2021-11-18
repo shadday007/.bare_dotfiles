@@ -29,6 +29,7 @@ if exists('g:loaded_minpac')
     call minpac#add('jiangmiao/auto-pairs') " Insert or delete brackets, parens, quotes in pair.
     call minpac#add('tommcdo/vim-exchange') " Easy text exchange operator for Vim.
     call minpac#add('unblevable/quick-scope') " highlight for a unique character in every word on a line
+    call minpac#add('kana/vim-textobj-user') " is a Vim plugin to create your own text objects without pain. 
     " 3}}}
 
     " Fuzzy finder {{{3
@@ -41,6 +42,8 @@ if exists('g:loaded_minpac')
     " 3}}}
 
     " Snippets/Convenience {{{3
+    call minpac#add('SirVer/ultisnips') " Snippet Manager
+    call minpac#add('honza/vim-snippets') " Snippet Provider
     " 3}}}
 
     " Git {{{3
@@ -54,8 +57,14 @@ if exists('g:loaded_minpac')
     call minpac#add('ludovicchabant/vim-gutentags') " for generate tags 
     " call minpac#add('skywind3000/gutentags_plus')   " for switch gtags not work for now
     call minpac#add('liuchengxu/vista.vim') " View and search LSP symbols, tags in Vim
-    call minpac#add('SirVer/ultisnips') " Snippet Manager
-    call minpac#add('honza/vim-snippets') " Snippet Provider
+    " Ruby development
+    call minpac#add('nelstrom/vim-textobj-rubyblock') " A custom text object for selecting ruby blocks.
+    call minpac#add('tpope/vim-bundler') " This is a lightweight bag of Vim goodies for Bundler
+    call minpac#add('tpope/vim-rake') " Rake.vim is a plugin leveraging projectionist.vim to enable you to use all those parts of rails.vim that you wish
+    call minpac#add('tpope/vim-projectionist') " Projectionist provides granular project configuration using 'projections'
+    call minpac#add('tpope/vim-rails') " for editing Ruby on Rails applications.
+    call minpac#add('tpope/gem-ctags') " automatically invoke Ctags on gems as they are installed.
+    call minpac#add('tpope/vim-endwise') " This is a simple plugin that helps to end certain structures automatically.
     " 3}}}
 
     " Appearance {{{3
