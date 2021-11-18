@@ -100,7 +100,7 @@ super + w
 
 #Oblogout
 super + x
-    oblogout
+    arcolinux-logout
 
 #Opera
 super + o
