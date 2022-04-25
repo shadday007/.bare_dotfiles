@@ -3,19 +3,92 @@ case $- in
     *i*) ;;
     *) return ;;
 esac
+export HISTIGNORE="history*:[ \t]*:ls:ll:cd:cd -:man:man *:pwd:exit:date:* --help:"
+export HISTCONTROL=ignoredups:erasedups
+# export HISTTIMEFORMAT="%F %T "
 
-export HISTCONTROL=ignoreboth:erasedups
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+export HISTSIZE=5000
+HISTFILESIZE=10000
+export HSTR_CONFIG=hicolor       # get more colors
 
-#PS1='[\u@\h \W]\$ '
+# https://unix.stackexchange.com/questions/18212/bash-history-ignoredups-and-erasedups-setting-conflict-with-common-history
+function historymerge {
+    history -n; history -w; history -c; history -r;
+}
 
-#shopt
+function historyclean {
+    if [[ -e "$HISTFILE" ]]; then
+        exec {history_lock}<"$HISTFILE" && flock -x $history_lock
+        history -a
+        tac "$HISTFILE" | awk '!x[$0]++' | tac > "$HISTFILE.tmp$$"
+        mv -f "$HISTFILE.tmp$$" "$HISTFILE"
+        history -c
+        history -r
+        flock -u $history_lock && unset history_lock
+    fi
+}
+
+remove_failed_commands_from_history () {
+    local exit_status=$?
+    # If the exit status was 127, the command was not found. Let's remove it from history
+    # local number=$(history 1)
+    # number=${number%% *}
+    local number=$(history 1 | awk '{print $1}')
+    if [ -n "$number" ]; then
+        if [ $exit_status -eq 127 ] && ([ -z $HISTLASTENTRY ] || [ $HISTLASTENTRY -lt $number ]); then
+            history -d $number
+        else
+            HISTLASTENTRY=$number
+        fi
+    fi
+}
+
+debug_handler() {
+    LAST_COMMAND=$BASH_COMMAND;
+}
+
+error_handler() {
+    local LAST_HISTORY_ENTRY=$(history | tail -1l)
+
+    # if last command is in history (HISTCONTROL, HISTIGNORE)...
+    if [ "$LAST_COMMAND" == "$(cut -d ' ' -f 2- <<< $LAST_HISTORY_ENTRY)" ]
+    then
+        # ...prepend it's history number into FAILED_COMMANDS,
+        # marking the command for deletion.
+        FAILED_COMMANDS="$(cut -d ' ' -f 1 <<< $LAST_HISTORY_ENTRY) $FAILED_COMMANDS"
+    fi
+}
+
+exit_handler() {
+    for i in $(echo $FAILED_COMMANDS | tr ' ' '\n' | uniq)
+    do
+        history -d $i
+    done
+    FAILED_COMMANDS=
+    history -n; history -w; history -c; history -r;
+}
+
+# trap error_handler ERR
+trap debug_handler DEBUG
+
+function ck() {
+    while sleep 1; do tput sc; tput cup 0 $(($COLUMNS-32)) ; date; tput rc; done &
+}
+
+# If you want to perform work any time bash exits (and whether it’s a login shell or not)
+trap exit_handler EXIT
+
+#shop
 shopt -s autocd # change to named directory
 shopt -s cdspell # autocorrects cd misspellings
 shopt -s cmdhist # save multi-line commands in history as single line
-shopt -s dotglob
+shopt -s dotglob #include filenames beginning with `.' in results of path	expansion
 shopt -s histappend # do not overwrite history
 shopt -s expand_aliases # expand aliases
-
+shopt -s direxpand # expand directory names
+shopt -s histreedit ## reedit a history substitution line if it failed
+shopt -s histverify ## edit a recalled history line before executing
 
 export EDITOR=vim
 
@@ -24,14 +97,13 @@ export VIMDATA=~/.vim
 export MYVIMRC=~/.vim/vimrc
 ### "vim" as manpager
 export MANPAGER='/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft=man ts=8 nomod nolist norelativenumber nonu noma\" -c \"normal L\" -c \"nmap q :qa<CR>\"</dev/tty <(col -b)"'
-#export MANPAGER="vim -M +MANPAGER -"
 
-stty -ixon  #Note that <C-Q> only works in a terminal if you disable flow control
 # from vim-unimpaired plugin
+stty -ixon  #Note that <C-Q> only works in a terminal if you disable flow control
 
 # for cppman
 #export COMP_WORDBREAKS=" /\"\'><;|&("
-cppman -m true
+# cppman -m true
 
 # Execute Alias definitions. {{{
 DISTRO=$(cat /etc/issue  | head -n +1 | awk '{print $1}')
@@ -41,12 +113,14 @@ else
     . "$HOME"/.config/bash/aliasses/default
 fi
 # }}}
-
 #
+# echo $TERM
 if [[ $TERM == xterm-termite ]]; then
     . /etc/profile.d/vte*.sh
     __vte_prompt_command
 fi
+
+[ -z "$TMUX" ] && export TERM=xterm-256color
 
 # Base16 Shell {{{
 BASE16_SHELL="$HOME/.config/base16-shell/"
@@ -55,19 +129,24 @@ if [[ ! -f $BASE16_SHELL/profile_helper.sh ]]; then
     git clone https://github.com/chriskempson/base16-shell.git "$BASE16_SHELL"
 fi
 
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-    eval "$("$BASE16_SHELL/profile_helper.sh")"
-    # }}}
+PS1='[\u@\h \W]\$ '
 
-    export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-    export PATH="/home/shadday/.local/bin:$PATH"
-    export PATH="/home/shadday/.config/bash/scripts/:$PATH"
-    export DENO_INSTALL="/home/shadday/.deno"
-    export PATH="$DENO_INSTALL/bin:$PATH"
-    export PATH=".:$PATH"
-    export PATH="/home/shadday/.gem/ruby/3.0.0/bin:$PATH"
-    #export MANPATH="$(manpath -g):$HOME/.cache/cppman:$HOME/.cache/cppman/manindex"   #no set for now
+#The -n returns TRUE if the length of STRING is nonzero.
+#has problem with vim terminal
+#[ -n "$PS1" ] && \
+#    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+#    eval "$("$BASE16_SHELL/profile_helper.sh")"
+#    # }}}
+
+# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# export PATH="/home/shadday/.local/bin:$PATH"
+# export PATH="/home/shadday/.config/bash/scripts/:$PATH"
+# export DENO_INSTALL="/home/shadday/.deno"
+# export PATH="$DENO_INSTALL/bin:$PATH"
+# export PATH=".:$PATH"
+# export PATH="/home/shadday/.gem/ruby/3.0.0/bin:$PATH"
+
+#export MANPATH="$(manpath -g):$HOME/.cache/cppman:$HOME/.cache/cppman/manindex"   #no set for now
 
 # install font JetBrains Mono Regular Nerd Font Complete.ttf
 FONT_INSTALLED=$(fc-list | grep -i "JetBrainsMono");
@@ -111,7 +190,40 @@ export FZF_ALT_C_OPTS='--preview "tree -C {} | head -100"'
 
 export BAT_THEME="base16-256"
 
+# Ruby environment manager
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+# function for take zet notes
+zet() {
+    vim "+Zet $*"
+}
+
+# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# export PROMPT_COMMAND="historyclean;$PROMPT_COMMAND"
+# export PROMPT_COMMAND='LAST_COMMAND_EXIT=$? && history -a && test 127 -eq $LAST_COMMAND_EXIT && head -n -2 $HISTFILE >${HISTFILE}_temp && mv ${HISTFILE}_temp $HISTFILE'
+export PROMPT_COMMAND="remove_failed_commands_from_history;$PROMPT_COMMAND"
+
 ### CREATE CUSTOM PROMPT(S)
+txtblu='\[\033[00;34m\]'
+txtpur='\[\033[00;35m\]'
+txtblu='\[\033[00;36m\]'
+txtwht='\[\033[00;37m\]'
+txtylw='\[\033[00;33m\]'
+txtgrn='\[\033[00;32m\]'
+txtred='\[\033[00;31m\]'
+txtblk='\[\033[00;30m\]'
+blk='\[\033[01;30m\]'   # Black
+red='\[\033[01;31m\]'   # Red
+grn='\[\033[01;32m\]'   # Green
+ylw='\[\033[01;33m\]'   # Yellow
+blu='\[\033[01;34m\]'   # Blue
+pur='\[\033[01;35m\]'   # Purple
+cyn='\[\033[01;36m\]'   # Cyan
+wht='\[\033[01;37m\]'   # White
+clr='\[\033[00m\]'      # Reset
+
+
 #PS1=$'\n\e[1;36m %@ [%.] %# \e[0m\e[4 q' # for zsh
 # \n - new line
 # %# - specifies whether the user is root (#) or otherwise (%)
@@ -178,4 +290,3 @@ export BAT_THEME="base16-256"
   # \W – the basename of the working directory ($HOME is represented by ~)
   # \[ – start a sequence of non-displayed characters (useful if you want to add a command or instruction set to the prompt)
   # \] – close or end a sequence of non-displayed characters
-

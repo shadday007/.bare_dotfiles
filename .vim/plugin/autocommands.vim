@@ -60,6 +60,12 @@ if has('autocmd')
                             \	endif
             endif
 
+            autocmd BufWritePost,VimLeave *notes/*.md silent !~/.config/bash/scripts/buildnote %:p
+
+            " Remember last position in file:
+            au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+
         augroup END
 
     endfunction

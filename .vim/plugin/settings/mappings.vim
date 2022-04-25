@@ -52,6 +52,10 @@ nnoremap : ;
 xnoremap . :norm.<CR>
 
 " Nicer Navigation
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
 
 " Allows the cursor to move up and down naturally by display, lines instead of file lines:
 nnoremap j gj

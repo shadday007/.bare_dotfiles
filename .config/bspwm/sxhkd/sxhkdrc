@@ -2,7 +2,11 @@
 # SUPER + FUNCTION KEYS #
 #########################
 
-# Opera
+#################################################################
+# SUPER + FUNCTION KEYS
+#################################################################
+
+# Vivaldi
 super + F1
 	opera
 
@@ -44,15 +48,24 @@ super + F10
 
 #Rofi Fullscreen
 super + F11
-    rofi -show run -fullscreen
+    rofi -theme-str 'window \{width: 100%;height: 100%;\}' -show drun
 
 #Rofi
 super + F12
-    rofi -show run
+    rofi -show drun
 
 #########################
 # SUPER + ... KEYS      #
 #########################
+# Scratchpad
+super + shift + n
+    ~/.config/bash/scripts/lastnotes
+
+super + n
+    ~/.config/bash/scripts/scratchpad.sh dropdown
+
+super + semicolon
+    tdrop -ma -w 40% -h 40% -x 1%  -y 1% -n 1 termite -e "vim"
 
 #Atom
 super + e
@@ -114,15 +127,20 @@ super + Escape
 super + Return
 	termite
 
-#########################
-# SUPER + SHIFT KEYS    #
-#########################
+#################################################################
+# SUPER + SHIFT KEYS
+#################################################################
 
 #File-Manager
 super + shift + Return
 	thunar
 
-#DMENU
+#Keyboard dependent
+#File-Manager
+#super + shift + KP_Enter
+#	thunar
+
+#dmenu
 super + shift + d
 	dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
 
@@ -145,11 +163,10 @@ super + shift + w
 #Logout
 super + shift + x
 	bspc quit
+#################################################################
+# CONTROL + ALT KEYS
+#################################################################
 
-
-#########################
-# CONTROL + ALT KEYS    #
-#########################
 
 #Xfce4-appfinder
 ctrl + alt + a
@@ -207,7 +224,7 @@ ctrl + alt + r
 ctrl + alt + u
      pavucontrol
 
-#Vivaldi
+#vim anywhere
 ctrl + alt + v
       /home/shadday/.vim-anywhere/bin/run
 #Atom
@@ -228,13 +245,13 @@ ctrl + alt + Return
 alt + t
     variety -t
 
-#Wallpaper next
-alt + n
-    variety -n
+##Wallpaper next
+#alt + n
+#    variety -n
 
-#Wallpaper previous
-alt + p
-    variety -p
+##Wallpaper previous
+#alt + p
+#    variety -p
 
 #Wallpaper favorite
 alt + f

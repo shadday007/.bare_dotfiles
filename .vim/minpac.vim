@@ -54,23 +54,31 @@ if exists('g:loaded_minpac')
     " 3}}}
 
     " Vim plugin for development {{{3
+    call minpac#add('christoomey/vim-tmux-navigator') " move between tmux panes and Vim splits seamlessly.
     call minpac#add('ludovicchabant/vim-gutentags') " for generate tags 
     " call minpac#add('skywind3000/gutentags_plus')   " for switch gtags not work for now
     call minpac#add('liuchengxu/vista.vim') " View and search LSP symbols, tags in Vim
+    call minpac#add('AndrewRadev/sideways')  " The plugin defines two commands, :SidewaysLeft and :SidewaysRight, which move the item under the cursor left or right
+
     " Ruby development
     call minpac#add('nelstrom/vim-textobj-rubyblock') " A custom text object for selecting ruby blocks.
     call minpac#add('tpope/vim-bundler') " This is a lightweight bag of Vim goodies for Bundler
-    call minpac#add('tpope/vim-rake') " Rake.vim is a plugin leveraging projectionist.vim to enable you to use all those parts of rails.vim that you wish
     call minpac#add('tpope/vim-projectionist') " Projectionist provides granular project configuration using 'projections'
+    call minpac#add('andyl/fuzzy-projectionist.vim') " Alternate File Navigation
+    call minpac#add('andyl/vim-projectionist-ruby') " This plugin supplies quick-nav links for Ruby projects
+    call minpac#add('tpope/vim-rake') " Rake.vim is a plugin leveraging projectionist.vim to enable you to use all those parts of rails.vim that you wish
     call minpac#add('tpope/vim-rails') " for editing Ruby on Rails applications.
+    call minpac#add('ecomba/vim-ruby-refactoring') " to make refactoring Ruby easier.
     call minpac#add('tpope/gem-ctags') " automatically invoke Ctags on gems as they are installed.
     call minpac#add('tpope/vim-endwise') " This is a simple plugin that helps to end certain structures automatically.
+    call minpac#add('alvan/vim-closetag') " 
     " 3}}}
 
     " Appearance {{{3
     call minpac#add('chriskempson/base16-vim')
     call minpac#add('wincent/pinnacle')
     call minpac#add('Yggdroot/indentLine')  " displaying thin vertical lines at each indentation level
+    call minpac#add('tommcdo/vim-lion')  " for aligning text by some character. The two operators are gl and gL.
     " 3}}}
 
     " Custom filetype plugins {{{3
@@ -87,5 +95,6 @@ endif
 " Minpac commands {{{2
 command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
 command! PackClean packadd minpac | source $MYVIMRC | call minpac#clean()
+command! PackStatus packadd minpac | call minpac#status()
 "  2}}}
 " 1}}}
