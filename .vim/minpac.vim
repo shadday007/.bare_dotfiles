@@ -58,7 +58,7 @@ if exists('g:loaded_minpac')
     call minpac#add('ludovicchabant/vim-gutentags') " for generate tags 
     " call minpac#add('skywind3000/gutentags_plus')   " for switch gtags not work for now
     call minpac#add('liuchengxu/vista.vim') " View and search LSP symbols, tags in Vim
-    call minpac#add('AndrewRadev/sideways')  " The plugin defines two commands, :SidewaysLeft and :SidewaysRight, which move the item under the cursor left or right
+    call minpac#add('AndrewRadev/sideways.vim')  " The plugin defines two commands, :SidewaysLeft and :SidewaysRight, which move the item under the cursor left or right
 
     " Ruby development
     call minpac#add('nelstrom/vim-textobj-rubyblock') " A custom text object for selecting ruby blocks.
@@ -78,7 +78,8 @@ if exists('g:loaded_minpac')
     call minpac#add('chriskempson/base16-vim')
     call minpac#add('wincent/pinnacle')
     call minpac#add('Yggdroot/indentLine')  " displaying thin vertical lines at each indentation level
-    call minpac#add('tommcdo/vim-lion')  " for aligning text by some character. The two operators are gl and gL.
+    " call minpac#add('tommcdo/vim-lion')  " for aligning text by some character. The two operators are gl and gL.
+    call minpac#add('junegunn/vim-easy-align')  " A simple, easy-to-use Vim alignment plugin 
     " 3}}}
 
     " Custom filetype plugins {{{3
