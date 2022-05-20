@@ -91,7 +91,6 @@ shopt -s histreedit ## reedit a history substitution line if it failed
 shopt -s histverify ## edit a recalled history line before executing
 
 export EDITOR=vim
-
 export VIMCONFIG=~/.vim
 export VIMDATA=~/.vim
 export MYVIMRC=~/.vim/vimrc
@@ -133,20 +132,20 @@ PS1='[\u@\h \W]\$ '
 
 #The -n returns TRUE if the length of STRING is nonzero.
 #has problem with vim terminal
-#[ -n "$PS1" ] && \
-#    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-#    eval "$("$BASE16_SHELL/profile_helper.sh")"
-#    # }}}
+[ -n "$PS1" ] && \
+   [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+   eval "$("$BASE16_SHELL/profile_helper.sh")"
+   # }}}
 
-# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-# export PATH="/home/shadday/.local/bin:$PATH"
-# export PATH="/home/shadday/.config/bash/scripts/:$PATH"
-# export DENO_INSTALL="/home/shadday/.deno"
-# export PATH="$DENO_INSTALL/bin:$PATH"
-# export PATH=".:$PATH"
-# export PATH="/home/shadday/.gem/ruby/3.0.0/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/home/shadday/.local/bin:$PATH"
+export PATH="/home/shadday/.config/bash/scripts/:$PATH"
+export DENO_INSTALL="/home/shadday/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+export PATH=".:$PATH"
+export PATH="/home/shadday/.gem/ruby/3.0.0/bin:$PATH"
 
-#export MANPATH="$(manpath -g):$HOME/.cache/cppman:$HOME/.cache/cppman/manindex"   #no set for now
+export MANPATH="$(manpath -g):$HOME/.cache/cppman:$HOME/.cache/cppman/manindex"   #no set for now
 
 # install font JetBrains Mono Regular Nerd Font Complete.ttf
 FONT_INSTALLED=$(fc-list | grep -i "JetBrainsMono");
