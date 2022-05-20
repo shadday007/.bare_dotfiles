@@ -62,7 +62,7 @@ function s:CheckColorScheme()
     " - `statusline.vim` will re-set User1, User2 etc.
     " - `after/plugin/loupe.vim` will override Search.
     doautocmd ColorScheme
-    hi Normal guibg=NONE ctermbg=NONE
+    " hi Normal guibg=NONE ctermbg=NONE
     "   hi! Normal ctermbg=NONE guibg=NONE
     hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
     if &background ==# 'light'
