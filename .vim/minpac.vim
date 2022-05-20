@@ -49,7 +49,7 @@ if exists('g:loaded_minpac')
     " Git {{{3
     call minpac#add('tpope/vim-fugitive') " The crown jewel of Fugitive is :Git
     call minpac#add('airblade/vim-gitgutter') " shows a git diff in the sign column
-    call minpac#add('junegunn/vim-github-dashboard') " Browse GitHub events (user dashboard, user/repo activity) in Vim.
+    " call minpac#add('junegunn/vim-github-dashboard') " Browse GitHub events (user dashboard, user/repo activity) in Vim.
     call minpac#add('tpope/vim-rhubarb') " for browse repository
     " 3}}}
 
@@ -87,6 +87,7 @@ if exists('g:loaded_minpac')
 
     " Utilities Plugins {{{3
     call minpac#add('tyru/open-browser.vim')    " open and or search the word or uri under cursor on many browsers
+    call minpac#add('AndrewRadev/Bufferize.vim')  " The plugin exposes the :Bufferize command
     " 3}}}
 
     " Personal Packages {{{3

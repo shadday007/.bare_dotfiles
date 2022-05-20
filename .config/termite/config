@@ -50,7 +50,7 @@ cursor_foreground = #121212
 foreground = #adadad
 foreground_bold = #efefef
 #background = #121212
-background = rgba(18,18,18,0.9)
+background = rgba(18,18,18,0.8)
 highlight = #222222
 
 #black
