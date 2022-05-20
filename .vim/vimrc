@@ -14,12 +14,6 @@ set packpath^=$HOME/.vim
 
 scriptencoding utf-8
 
-" VSCode early return
-if exists('g:vscode')
-    runtime $XDG_CONFIG_HOME/settings/vscode.vim
-    finish
-endif
-
 " Auto source
 if empty($MYVIMRC) | let $MYVIMRC = expand('<sfile>:p') | endif
 augroup VimrcAutoSource
