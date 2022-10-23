@@ -289,4 +289,5 @@ source /usr/share/nvm/init-nvm.sh
 
 # source "$HOME"/.config/bash/oh-my-bash.conf
 source "$HOME"/.config/bash/scripts/color.sh
+
 # neofetch
