@@ -58,18 +58,18 @@ super + F12
 # SUPER + ... KEYS      #
 #########################
 # Scratchpad
-super + shift + n
-    ~/.config/bash/scripts/lastnotes
+# super + shift + n
+    # ~/.config/bash/scripts/lastnotes
 
-super + n
-    ~/.config/bash/scripts/scratchpad.sh dropdown
+# super + n
+    # ~/.config/bash/scripts/scratchpad.sh dropdown
 
 super + semicolon
-    tdrop -ma -w 40% -h 40% -x 1%  -y 1% -n 1 termite -e "vim"
+    tdrop -ma -w 40% -h 40% -x 1%  -y 1% -n 1 kitty -e "vim"
 
 #Atom
 super + e
-    atom
+    code
 
 #Toggle fullscreen of window
 super + f
@@ -113,7 +113,7 @@ super + w
 
 #Oblogout
 super + x
-    arcolinux-logout
+    archlinux-logout
 
 #Opera
 super + o
@@ -125,7 +125,7 @@ super + Escape
 
 #Terminal emulator
 super + Return
-	termite
+	kitty
 
 #################################################################
 # SUPER + SHIFT KEYS
@@ -169,16 +169,16 @@ super + shift + x
 
 
 #Xfce4-appfinder
-ctrl + alt + a
-     xfce4-appfinder
+# ctrl + alt + a
+#      xfce4-appfinder
 
 #File-Manager
-ctrl + alt + b
-     thunar
+# ctrl + alt + b
+#      thunar
 
 #Catfish
-ctrl + alt + c
-     catfish
+# ctrl + alt + c
+#      catfish
 
 #Evolution
 ctrl + alt + e
@@ -189,32 +189,32 @@ ctrl + alt + f
      firefox
 
 #Chromium
-ctrl + alt + g
-     chromium -no-default-browser-check
+# ctrl + alt + g
+#      chromium -no-default-browser-check
 
 #Nitrogen
 ctrl + alt + i
      nitrogen
 
 #Screen-Locker
-ctrl + alt + k
-     slimlock
+# ctrl + alt + k
+#      slimlock
 
 #Xfce4-settings-manager
-ctrl + alt + m
-     xfce4-settings-manager
+# ctrl + alt + m
+#      xfce4-settings-manager
 
 #Compton Toggle
-ctrl + alt + o
-     ~/.config/bspwm/scripts/compton-toggle.sh
+# ctrl + alt + o
+#      ~/.config/bspwm/scripts/compton-toggle.sh
 
 #Spotify
 ctrl + alt + s
      spotify
 
 #termite
-ctrl + alt + t
-     termite
+# ctrl + alt + t
+#      termite
 
 #Rofi theme selector
 ctrl + alt + r
@@ -225,8 +225,8 @@ ctrl + alt + u
      pavucontrol
 
 #vim anywhere
-ctrl + alt + v
-      /home/shadday/.vim-anywhere/bin/run
+# ctrl + alt + v
+#       /home/shadday/.vim-anywhere/bin/run
 #Atom
 ctrl + alt + w
      atom
@@ -289,11 +289,11 @@ alt + F3
 
 #Wallpaper trash
 alt + shift + t
-    variety -t 
+    variety -t
 
 #Wallpaper next
 alt + shift + n
-    variety -n 
+    variety -n
 
 #Wallpaper previous
 alt + shift + p

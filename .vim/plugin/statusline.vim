@@ -1,4 +1,6 @@
-scriptencoding utf-8
+" OWN_Statusline
+" to enabe comment next line
+" finish
 
 " cf the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 if has('statusline')
@@ -37,5 +39,17 @@ if has('statusline')
     set statusline+=%5*             " Switch to User5 highlight group.
     set statusline+=%{statusline#rhs()}
     set statusline+=%*              " Reset highlight group.
+
+    autocmd ColorScheme * call statusline#update_highlight()
+    "      autocmd User FerretAsyncStart " call statusline#async_start()
+    "      autocmd User FerretAsyncFinish " call statusline#async_finish()
+    if exists('#TextChangedI')
+        autocmd BufWinEnter,BufWritePost,FileWritePost,TextChanged,TextChangedI,WinEnter * call statusline#check_modified()
+    else
+        autocmd BufWinEnter,BufWritePost,FileWritePost,WinEnter * call statusline#check_modified()
+    endif
+
+    autocmd BufEnter,FocusGained,VimEnter,WinEnter * call autocommands#focus_window()  | call autocommands#focus_statusline() | setlocal cursorline
+    autocmd FocusLost,WinLeave * call autocommands#blur_window() | call autocommands#blur_statusline() | setlocal nocursorline
 
 endif

@@ -1,5 +1,4 @@
-#!/bin/bash
-#!/usr/bin/env bash
+#!/usr/bin/bash
 #
 # Colors
 #
@@ -8,7 +7,7 @@ BASE16_CONFIG=~/.vim/.base16
 
 
 function pause(){
-   read -p "$*"
+   read -rp "$*"
 }
 
 # Takes a hex color in the form of "RRGGBB" and outputs its luma (0-255, where
@@ -84,7 +83,7 @@ color() {
         \cp "$BASE16_CONFIG" "$BASE16_CONFIG_PREVIOUS"
       fi
 
-      echo "$SCHEME" >| "$BASE16_CONFIG"
+      echo "$SCHEME" > "$BASE16_CONFIG"
       echo "$BACKGROUND" >> "$BASE16_CONFIG"
       sh "$FILE"
 

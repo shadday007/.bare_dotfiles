@@ -1,4 +1,3 @@
-scriptencoding utf-8
 
 if has('autocmd')
 
@@ -18,29 +17,10 @@ if has('autocmd')
             " Update a buffer's contents on focus if it changed outside of Vim.
             autocmd FocusGained,BufEnter * :checktime
 
-            " autocmd that will set up the w:created variable
-            autocmd VimEnter * autocmd WinEnter * let w:created=1
-
             " Consider this one, since WinEnter doesn't fire on the first window created when Vim launches.
             " You'll need to set any options for the first window in your vimrc,
             " or in an earlier VimEnter autocmd if you include this
             autocmd VimEnter * let w:created=1
-
-            autocmd BufEnter,FocusGained,VimEnter,WinEnter * call autocommands#focus_window() | setlocal cursorline
-            autocmd FocusLost,WinLeave * call autocommands#blur_window() | setlocal nocursorline
-
-            autocmd ColorScheme * call statusline#update_highlight()
-            "      autocmd User FerretAsyncStart call statusline#async_start()
-            "      autocmd User FerretAsyncFinish call statusline#async_finish()
-
-            autocmd BufEnter,FocusGained,VimEnter,WinEnter * call autocommands#focus_statusline()
-            autocmd FocusLost,WinLeave * call autocommands#blur_statusline()
-
-            if exists('#TextChangedI')
-                autocmd BufWinEnter,BufWritePost,FileWritePost,TextChanged,TextChangedI,WinEnter * call statusline#check_modified()
-            else
-                autocmd BufWinEnter,BufWritePost,FileWritePost,WinEnter * call statusline#check_modified()
-            endif
 
             let s:default_path = escape(&path, '\ ') " store default value of 'path'
 
@@ -63,13 +43,61 @@ if has('autocmd')
             autocmd BufWritePost,VimLeave *notes/*.md silent !~/.config/bash/scripts/buildnote %:p
 
             " Remember last position in file:
-            au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+            autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
+            " Extras White spaces
+            highlight ExtraWhitespace ctermbg=red guibg=red
+            match ExtraWhitespace /\s\+$/
+            autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+            autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+            autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+            autocmd BufWinLeave * call clearmatches()
+
+            function! TrimWhiteSpace()
+                %s/\s\+$//e
+            endfunction
+
+            autocmd FileWritePre   * call TrimWhiteSpace()
+            autocmd FileAppendPre  * call TrimWhiteSpace()
+            autocmd FilterWritePre * call TrimWhiteSpace()
+            autocmd BufWritePre    * call TrimWhiteSpace()
+
+        augroup END
+
+        augroup load_us_in_insert_mode
+            autocmd!
+            autocmd InsertEnter *
+                        \ call plug#load(
+                        \ 'delimitMate'
+                        \)
+                        \| autocmd! load_us_in_insert_mode
+        augroup END
+
+        augroup load_us_in_idle_mode
+            autocmd!
+            autocmd CursorHold,CursorHoldI *
+                        \ call plug#load(
+                        \ 'vim-unimpaired',
+                        \ 'vim-surround',
+                        \ 'vim-repeat',
+                        \ 'vim-commentary',
+                        \ 'open-browser.vim',
+                        \ 'vim-easy-align',
+                        \ 'QFEnter',
+                        \ 'quick-scope'
+                        \)
+                        \| autocmd! load_us_in_idle_mode
+        augroup END
+
+        augroup numbertoggle
+            autocmd!
+            autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+            autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
         augroup END
 
     endfunction
 
     call s:autocommands()
-
 endif
+

@@ -133,9 +133,9 @@ PS1='[\u@\h \W]\$ '
 #The -n returns TRUE if the length of STRING is nonzero.
 #has problem with vim terminal
 [ -n "$PS1" ] && \
-   [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-   eval "$("$BASE16_SHELL/profile_helper.sh")"
-   # }}}
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+    eval "$("$BASE16_SHELL/profile_helper.sh")"
+    # }}}
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/home/shadday/.local/bin:$PATH"
@@ -161,10 +161,6 @@ if [ -z "$FONT_INSTALLED" ]; then
     fc-cache -f -v
 fi
 
-neofetch
-
-source "$HOME"/.config/bash/oh-my-bash.conf
-source "$HOME"/.config/bash/scripts/color.sh
 
 # Key bindings for command-line and Fuzzy finder completion for bash
 source /usr/share/fzf/completion.bash
@@ -193,34 +189,29 @@ export BAT_THEME="base16-256"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-# function for take zet notes
-zet() {
-    vim "+Zet $*"
-}
-
 # export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # export PROMPT_COMMAND="historyclean;$PROMPT_COMMAND"
 # export PROMPT_COMMAND='LAST_COMMAND_EXIT=$? && history -a && test 127 -eq $LAST_COMMAND_EXIT && head -n -2 $HISTFILE >${HISTFILE}_temp && mv ${HISTFILE}_temp $HISTFILE'
 export PROMPT_COMMAND="remove_failed_commands_from_history;$PROMPT_COMMAND"
 
 ### CREATE CUSTOM PROMPT(S)
-txtblu='\[\033[00;34m\]'
-txtpur='\[\033[00;35m\]'
-txtblu='\[\033[00;36m\]'
-txtwht='\[\033[00;37m\]'
-txtylw='\[\033[00;33m\]'
-txtgrn='\[\033[00;32m\]'
-txtred='\[\033[00;31m\]'
-txtblk='\[\033[00;30m\]'
-blk='\[\033[01;30m\]'   # Black
-red='\[\033[01;31m\]'   # Red
-grn='\[\033[01;32m\]'   # Green
-ylw='\[\033[01;33m\]'   # Yellow
-blu='\[\033[01;34m\]'   # Blue
-pur='\[\033[01;35m\]'   # Purple
-cyn='\[\033[01;36m\]'   # Cyan
-wht='\[\033[01;37m\]'   # White
-clr='\[\033[00m\]'      # Reset
+# txtblu='\[\033[00;34m\]'
+# txtpur='\[\033[00;35m\]'
+# txtblu='\[\033[00;36m\]'
+# txtwht='\[\033[00;37m\]'
+# txtylw='\[\033[00;33m\]'
+# txtgrn='\[\033[00;32m\]'
+# txtred='\[\033[00;31m\]'
+# txtblk='\[\033[00;30m\]'
+# blk='\[\033[01;30m\]'   # Black
+# red='\[\033[01;31m\]'   # Red
+# grn='\[\033[01;32m\]'   # Green
+# ylw='\[\033[01;33m\]'   # Yellow
+# blu='\[\033[01;34m\]'   # Blue
+# pur='\[\033[01;35m\]'   # Purple
+# cyn='\[\033[01;36m\]'   # Cyan
+# wht='\[\033[01;37m\]'   # White
+# clr='\[\033[00m\]'      # Reset
 
 
 #PS1=$'\n\e[1;36m %@ [%.] %# \e[0m\e[4 q' # for zsh
@@ -289,3 +280,13 @@ clr='\[\033[00m\]'      # Reset
   # \W – the basename of the working directory ($HOME is represented by ~)
   # \[ – start a sequence of non-displayed characters (useful if you want to add a command or instruction set to the prompt)
   # \] – close or end a sequence of non-displayed characters
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# starship prompt
+eval "$(starship init bash)"
+source /usr/share/nvm/init-nvm.sh
+
+# source "$HOME"/.config/bash/oh-my-bash.conf
+source "$HOME"/.config/bash/scripts/color.sh
+# neofetch

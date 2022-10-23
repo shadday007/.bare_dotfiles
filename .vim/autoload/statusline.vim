@@ -1,4 +1,7 @@
 "" ." functions to format status line from https://github.com/wincent/wincent.git
+" OWN_Statusline
+" to enabe comment next line
+" finish
 
 let s:ispadding=0
 
@@ -11,7 +14,7 @@ endfunction
 
 function! statusline#gitbranch()
     if exists('g:loaded_fugitive')
-        let l:branch = fugitive#head()
+        let l:branch = FugitiveHead()
         if l:branch !=# ''
             let s:ispadding=1
             let l:branch = '%8*' . statusline#gutterpadding() . ' ' . branch . ' ' . '%*%9*%*'
@@ -164,7 +167,7 @@ function! statusline#update_highlight() abort
     " ref:2
     "  let l:bgcolor=synIDattr(synIDtrans(hlID("StatusLine")), \"bg", s:prefix)
     " ref:3
-    "  execute 'highlight User1 '  . ' ' . s:prefix .'bg=' . l:bgcolor . ' ' . s:prefix .'fg=' .l:fgcolor . ' cterm=Italic' 
+    "  execute 'highlight User1 '  . ' ' . s:prefix .'bg=' . l:bgcolor . ' ' . s:prefix .'fg=' .l:fgcolor . ' cterm=Italic'
 
     " Update StatusLine to use italics (used for filetype).
     let l:highlight=pinnacle#italicize('StatusLine')

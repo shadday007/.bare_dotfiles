@@ -13,4 +13,4 @@ let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
 " Visual mode : Open items in visual selection in a sequence of new tabs. By default, the quickfix window is automatically opened in the new tab to help you open other quickfix items. This behavior can be changed with the g:qfenter_enable_autoquickfix option.
 let g:qfenter_keymap.topen = ['<C-t>']
 
-let g:qfenter_exclude_filetypes = ['nerdtree', 'tagbar']
+let g:qfenter_exclude_filetypes = ['nerdtree', 'tagbar', '__vista__']

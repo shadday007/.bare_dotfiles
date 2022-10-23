@@ -1,13 +1,17 @@
 " Testing this two lines for now
 " let g:netrw_altv = 1
 " let g:netrw_browse_split = 4
+" Open Netwr
+
+nnoremap <leader>df :Lexplore %:p:h<CR>
+nnoremap <Leader>dl :Lexplore<CR>
 
 " open url under cursor using 'gx'
 let g:netrw_browsex_viewer= "xdg-open"
 
-" The home directory for where bookmarks and history are saved 
+" The home directory for where bookmarks and history are saved
 let g:netrw_home = $XDG_DATA_HOME."/vim"
-    
+
 " trying to make netrw more nice
 " Hide banner
 "Ocultar el banner (Si quieren). Para mostrarlo temporalmente sólo deben presionar I en Netrw.

@@ -28,11 +28,10 @@ set wildignore=*~,#*#,*.7z,.DS_Store,.git,.hg,.svn,*.a,*.adf,*.asc,*.au,*.aup
 " Tabulations and Keystrokes behaviour{{{2
 set mouse=a            " Enable mouse drag on window splits
 set mousemodel=popup
-set shiftwidth=4
-set tabstop=4           " 4 space tab
+set tabstop=2           " 2 space tab
 set expandtab           " use spaces for tabs
-set softtabstop=4       " 4 space tab
-set shiftwidth=4
+set softtabstop=2       " 2 space tab
+set shiftwidth=2
 set modelines=1
 " Always try to show 10 lines above and below the cursor location:
 set scrolloff=10
@@ -44,13 +43,17 @@ set wildignorecase
 set backspace=indent,eol,start
 "}}}
 
+" History {{{2
+set history=10000
+"}}}
+
 " Automatic, language-dependent indentation, syntax coloring  {{{2
 filetype indent plugin on
 syntax on
 set autoindent
+set smartindent
 set breakindent
-set showbreak=↳
-" ↪
+set showbreak=↪  " ↳ ↪
 set linebreak
 set termguicolors
 "}}}
@@ -63,9 +66,10 @@ set ignorecase          " ignore case when searching
 set incsearch           " search as characters are entered
 set hlsearch            " highlight all matches
 set smartcase           " ignores case unless an upper case letter is present in the query
-set shortmess+=a        " use abbreviations in messages eg. `[RO]` instead of `[readonly]`
+set shortmess+=atOI     " use abbreviations in messages eg. `[RO]` instead of `[readonly]`
 set showcmd             " show command in bottom bar
 set laststatus=2        " show always stausline
+set cmdheight=1         " Height of the command bar
 set cursorline          " highlight current line
 set lazyredraw
 set showmatch           " higlight matching parenthesis
@@ -74,7 +78,7 @@ set diffopt=filler,vertical
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
-set termwinsize=16x0   " Set terminal size
+" set termwinsize=16x0   " Set terminal size
 set splitbelow         " Always split below
 set splitright         " Always split right
 set colorcolumn=85
@@ -87,19 +91,22 @@ if exists('$SUDO_USER')
     set noswapfile                      " don't create root-owned files
     set noundofile                      " don't create root-owned files
 else
-    set backupdir=$XDG_CONFIG_HOME/tmp/backup  | call mkdir(&backupdir, 'p', 0700)   " keep backup files out of the way
+    set backupdir=$XDG_DATA_HOME/tmp/backup  | call mkdir(&backupdir, 'p', 0700)   " keep backup files out of the way
     set backupdir+=.
-    set directory=$XDG_CONFIG_HOME/tmp/swap  | call mkdir(&directory, 'p', 0700)     " keep swap files out of the way
+    set directory=$XDG_DATA_HOME/tmp/swap  | call mkdir(&directory, 'p', 0700)     " keep swap files out of the way
     set directory+=.
     if !has('nvim')
-        set undodir=$XDG_CONFIG_HOME/tmp/undo | call mkdir(&undodir, 'p', 0700)   " keep undo files out of the way
+        set undodir=$XDG_DATA_HOME/tmp/undo | call mkdir(&undodir, 'p', 0700)   " keep undo files out of the way
     else
-        set undodir=$XDG_CONFIG_HOME/tmp/nvim/undo | call mkdir(&undodir, 'p', 0700)   " keep undo files out of the way
+        set undodir=$XDG_DATA_HOME/tmp/nvim/undo | call mkdir(&undodir, 'p', 0700)   " keep undo files out of the way
     endif
     set undodir+=.
     set undofile                      " actually use undo files
+    set undolevels=1000      " Maximum number of changes that can be undone
+    set undoreload=10000     " Maximum number lines to save for undo on a buffer reload
     if !has('nvim') | set viminfofile=$XDG_CACHE_HOME/vim/viminfo | endif
 endif
+
 if has('mksession')
     " override ~/.vim/view default
     set viewdir=$XDG_DATA_HOME/tmp/view | call mkdir(&viewdir, 'p', 0700)
@@ -120,12 +127,12 @@ if has('folding')
     endif
 
     " vim: set foldmethod=marker:
-    set foldmethod=indent               " not as cool as syntax, but faster
-    set foldlevelstart=99               " start unfolded
-    set foldlevelstart=10               " start with fold level of 1
-    set foldnestmax=10                  " max 10 depth
-    set nofoldenable                      " don't fold files by default on open
-    set foldcolumn=2                    " show a small column on the left side of the window
+    set foldmethod=marker               " not as cool as syntax, but faster
+    set foldlevel=256                   " start unfolded
+    set foldlevelstart=1                " start with fold level of 1
+    set foldnestmax=10                  " max 10 depth for the 'indent' and 'syntax' methods
+    set nofoldenable                    " don't fold files by default on open
+    set foldcolumn=1                    " show a small column on the left side of the window
     set foldtext=MyFoldText()
 
     function! MyFoldText() abort
@@ -137,7 +144,7 @@ endif
 
 " Spell configuration {{{2
 call mkdir($XDG_DATA_HOME."/.vim/spell", 'p', 0700)
-" 
+"
 " For spelling, use  United States English by default, but later on we’ll
 " configure a leader mapping to switch to Spanish, since I so
 " often have to write for Venezuelan people.
@@ -175,7 +182,6 @@ set complete+=kspell
 set completeopt=menuone,longest,popup
 set spellsuggest=double
 "}}}
-"
 
 " Format options configuration {{{2
 " If a line is already longer than 'textwidth' would otherwise limit when
@@ -253,18 +259,11 @@ endif
 
 set list
 set listchars=
-set listchars+=tab:░\ 
+set listchars+=tab:░\
 set listchars+=trail:·
 set listchars+=extends:»
 set listchars+=precedes:«
 set listchars+=nbsp:⣿
 
-" Extras White spaces
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-au BufWinEnter * match ExtraWhitespace /\s\+$/
-au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-au InsertLeave * match ExtraWhitespace /\s\+$/
-au BufWinLeave * call clearmatches()
 "}}}
 

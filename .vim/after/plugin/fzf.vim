@@ -19,7 +19,7 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'hei
 " Mappings
 nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>F :Files /<CR>
-nnoremap <silent> <leader>p :Mru<CR>
+nnoremap <silent> <leader>m :Mru<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>l :BLines<CR>
 nnoremap <silent> <leader>` :Marks<CR>

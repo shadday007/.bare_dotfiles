@@ -4,13 +4,16 @@ let g:maplocalleader = ','
 
 " XDG support {{{1
 if empty($XDG_CACHE_HOME)  | let $XDG_CACHE_HOME  = $HOME."/.cache"       | endif
-if empty($XDG_CONFIG_HOME) | let $XDG_CONFIG_HOME = $HOME."/.config"      | endif
+if empty($XDG_CONFIG_HOME) | let $XDG_CONFIG_HOME = $HOME."/config"         | endif
 if empty($XDG_DATA_HOME)   | let $XDG_DATA_HOME   = $HOME."/.local/share" | endif
+if empty($XDG_STATE_HOME)  | let $XDG_STATE_HOME  = $HOME."/.local/state" | endif
 
-set runtimepath^=$XDG_CONFIG_HOME
-set runtimepath+=$XDG_DATA_HOME
+set runtimepath+=$XDG_CONFIG_HOME
+set runtimepath+=$XDG_DATA_HOME/vim
+set runtimepath+=$XDG_CONFIG_HOME/after
 
-set packpath^=$HOME/.vim
+set packpath^=$XDG_DATA_HOME/vim
+set packpath+=$XDG_DATA_HOME/vim/after
 
 scriptencoding utf-8
 
@@ -23,5 +26,8 @@ augroup END
 
 " Enable extended % matching
 runtime macros/matchit.vim
+
 " Enable minpac plugin manager
-runtime minpac.vim
+runtime vimplug.vim
+
+echo $runtimepath

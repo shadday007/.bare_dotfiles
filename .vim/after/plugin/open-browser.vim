@@ -1,4 +1,5 @@
 " configuration for open-browser plugin
+" finish
 
 if !exists('g:loaded_openbrowser')
     finish

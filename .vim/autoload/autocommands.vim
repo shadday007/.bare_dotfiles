@@ -1,31 +1,8 @@
+
 let g:ColorColumnBufferNameBlacklist = []
 let g:ColorColumnFileTypeBlacklist = ['diff', 'fugitiveblame', 'qf']
 let g:CursorlineBlacklist = ['command-t']
 let g:MkviewFiletypeBlacklist = ['diff', 'hgcommit', 'gitcommit']
-
-" Variant of statusline from plugin/statusline.vim (can't comment inline
-" with line continuation markers without Vim freaking out).
-let g:QuickfixStatusline =
-      \ '%7*'
-      \ . '%{statusline#lhs()}'
-      \ . '%*'
-      \ . '%4*'
-      \ . ''
-      \ . '\ '
-      \ . '%*'
-      \ . '%3*'
-      \ . '%q'
-      \ . '\ '
-      \ . '%{get(w:,\"quickfix_title\",\"\")}'
-      \ . '%*'
-      \ . '%<'
-      \ . '\ '
-      \ . '%='
-      \ . '\ '
-      \ . ''
-      \ . '%5*'
-      \ . '%{statusline#rhs()}'
-      \ . '%*'
 
 function! autocommands#should_colorcolumn() abort
     if index(g:ColorColumnBufferNameBlacklist, bufname(bufnr('%'))) != -1
@@ -80,6 +57,36 @@ function! autocommands#focus_window() abort
         endif
     endif
 endfunction
+
+
+" OWN_Statusline part
+" to enabe comment next line
+" finish
+
+" Variant of statusline from plugin/statusline.vim (can't comment inline
+" with line continuation markers without Vim freaking out).
+let g:QuickfixStatusline =
+      \ '%7*'
+      \ . '%{statusline#lhs()}'
+      \ . '%*'
+      \ . '%4*'
+      \ . ''
+      \ . '\ '
+      \ . '%*'
+      \ . '%3*'
+      \ . '%q'
+      \ . '\ '
+      \ . '%{get(w:,\"quickfix_title\",\"\")}'
+      \ . '%*'
+      \ . '%<'
+      \ . '\ '
+      \ . '%='
+      \ . '\ '
+      \ . ''
+      \ . '%5*'
+      \ . '%{statusline#rhs()}'
+      \ . '%*'
+
 
 function! autocommands#blur_statusline() abort
   " Default blurred statusline (buffer number: filename).
