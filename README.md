@@ -1,4 +1,4 @@
-#####Note:
+##### Note:
 I have decided to use another repository for my dotfiles and manage these with **GNU stow**. This repository has served me for quite some time, but I still find it annoying because the configuration files are mixed in with other files that do not belong to the repository. That is why I want to take a more traditional approach and also revisit my vim configuration, as it has become a bit slow with the incorporation of coc.vim,don't make me wrong it is a wonderful plugin. But I am not 100% sure that I need it. I still want the configuration to be common for vim and neovim. I say this because at the moment there is a choice to make between Lua(Neovim) and vim9script(vim) for the configuration. Where will my configuration go? I have no idea yet.
 
 ## Using bare repository technique
@@ -21,7 +21,7 @@ Ignore the files that are not being tracked from being shown up in git status:
 ~~~ sh
 dgit config --local status.showUntrackedFiles no
 ~~~
-#### Add the remote location to the repository (in this case GitHub) 
+#### Add the remote location to the repository (in this case GitHub)
 ~~~ sh
 dgit remote add origin https://github.com/$USERNAME/$REPOSITORY.git
 ~~~
